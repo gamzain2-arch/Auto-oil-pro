@@ -1,0 +1,155 @@
+{
+  "engine_oils": [
+    {
+      "brand": "Liqui Moly",
+      "name": "5W-20",
+      "viscosity": "5W-20"
+    },
+    {
+      "brand": "Liqui Moly",
+      "name": "AA 5W-20",
+      "viscosity": "5W-20"
+    },
+    {
+      "brand": "Liqui Moly",
+      "name": "AA 5W-30",
+      "viscosity": "5W-30"
+    },
+    {
+      "brand": "Liqui Moly",
+      "name": "5W-30",
+      "viscosity": "5W-30"
+    },
+    {
+      "brand": "Liqui Moly",
+      "name": "AA 10W-30",
+      "viscosity": "10W-30"
+    },
+    {
+      "brand": "Castrol GTX",
+      "name": "10W-40",
+      "viscosity": "10W-40"
+    },
+    {
+      "brand": "Castrol GTX",
+      "name": "5W-30",
+      "viscosity": "5W-30"
+    },
+    {
+      "brand": "Castrol GTX",
+      "name": "5W-20",
+      "viscosity": "5W-20"
+    },
+    {
+      "brand": "Castrol GTX",
+      "name": "20W-50",
+      "viscosity": "20W-50"
+    },
+    {
+      "brand": "Castrol Magnatec",
+      "name": "10W-40",
+      "viscosity": "10W-40"
+    },
+    {
+      "brand": "Castrol Magnatec",
+      "name": "5W-30",
+      "viscosity": "5W-30"
+    },
+    {
+      "brand": "Castrol Magnatec",
+      "name": "5W-20",
+      "viscosity": "5W-20"
+    },
+    {
+      "brand": "Castrol Magnatec",
+      "name": "0W-20",
+      "viscosity": "0W-20"
+    },
+    {
+      "brand": "Castrol EDGE",
+      "name": "SE 0W-20 — gold",
+      "viscosity": "0W-20"
+    },
+    {
+      "brand": "Castrol EDGE",
+      "name": "SE 5W-20 — black",
+      "viscosity": "5W-20"
+    },
+    {
+      "brand": "Castrol EDGE",
+      "name": "SE 5W-30 — black",
+      "viscosity": "5W-30"
+    },
+    {
+      "brand": "Castrol EDGE",
+      "name": "SE 10W-30 — black",
+      "viscosity": "10W-30"
+    },
+    {
+      "brand": "Castrol CRB",
+      "name": "20W-50",
+      "viscosity": "20W-50"
+    },
+    {
+      "brand": "Castrol CRB",
+      "name": "15W-40",
+      "viscosity": "15W-40"
+    },
+    {
+      "brand": "Valvoline",
+      "name": "SAE 10W-30",
+      "viscosity": "10W-30"
+    },
+    {
+      "brand": "Valvoline",
+      "name": "SAE 5W-30",
+      "viscosity": "5W-30"
+    },
+    {
+      "brand": "Valvoline",
+      "name": "SAE 5W-20",
+      "viscosity": "5W-20"
+    }
+  ],
+  "transmission_fluids": [
+    {
+      "brand": "Valvoline",
+      "name": "MaxLife ATF",
+      "type": "ATF"
+    },
+    {
+      "brand": "Valvoline",
+      "name": "ATF+4",
+      "type": "ATF+4"
+    },
+    {
+      "brand": "Valvoline",
+      "name": "CVT",
+      "type": "CVT"
+    },
+    {
+      "brand": "Stirlings",
+      "name": "6–8 speed",
+      "type": "6–8 speed ATF"
+    }
+  ],
+  "oil_filters_raw": [
+    "Car4u 42040",
+    "Car4u PF66",
+    "Wolf red YZZD2",
+    "Tibao PG99602EX",
+    "Car4u 31uoo",
+    "Car4u 349aboo12",
+    "Car4u 6714a",
+    "Tibao 2u000",
+    "Tibao 7524",
+    "Tibao 38020",
+    "Tibao 26aa",
+    "Gy mo 349",
+    "Tibao 38010",
+    "Tibao 2s000",
+    "Tibao 6714a",
+    "Wolf 35505",
+    "Wolf 3caa0"
+  ]
+}
