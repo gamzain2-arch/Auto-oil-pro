@@ -578,8 +578,35 @@ function escapeHtml(text){
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
 }
+    async function loadCars(){
+
+    try{
+
+        const response = await fetch("./cars.json", {
+
+            cache: "no-store"
+
+        });
+
+        if(!response.ok){
+
+            throw new Error("تعذر تحميل cars.json");
+
+        }
+
+        const data = await response.json();
+
+        console.log("تم تحميل قاعدة السيارات:", data.cars);
+
+    }catch(error){
+
+        console.error("خطأ في تحميل السيارات:", error);
+
+    }
 
 loadInventory();
+loadCars();
+    
 
 </script>
 
