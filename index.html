@@ -1,108 +1,1479 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0f14">
-<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#080b10">
 <title>Auto Oil Pro</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;background:#080b10;color:#f4f7fb;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-.app{max-width:760px;margin:auto;padding:18px 16px 40px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.logo{font-size:24px;font-weight:800;letter-spacing:.3px}.logo span{color:#65d9ff}.sub{color:#8f9aaa;font-size:12px;margin-top:3px}
-.badge{background:#121a23;border:1px solid #22303d;border-radius:14px;padding:9px 11px;color:#9fe7ff;font-size:12px}
-.search{background:#10151d;border:1px solid #26313e;border-radius:18px;padding:14px;display:flex;gap:10px;box-shadow:0 10px 30px #0005}
-.search input{flex:1;background:transparent;border:0;outline:0;color:white;font-size:16px}
-.search button{border:0;border-radius:12px;background:#65d9ff;color:#061017;font-weight:800;padding:10px 16px}
-.section{margin-top:22px}.title{font-size:16px;font-weight:800;margin-bottom:10px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.card{background:#10151d;border:1px solid #202a35;border-radius:16px;padding:15px}
-.card b{display:block;font-size:15px}.muted{color:#8f9aaa;font-size:12px;margin-top:5px}
-.result{margin-top:18px;background:#0f151c;border:1px solid #26313e;border-radius:20px;padding:16px;display:none}
-.result h2{margin:0 0 12px}.specs{display:grid;grid-template-columns:1fr 1fr;gap:8px}.spec{background:#141b24;border-radius:12px;padding:10px}.spec small{display:block;color:#8996a7}.spec strong{display:block;margin-top:3px}
-.notice{margin-top:12px;padding:11px;border-radius:12px;background:#171d25;color:#b9c4d1;font-size:13px}
-.product{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid #202832}.product:last-child{border-bottom:0}
-.ok{color:#73e2a0;font-weight:700}.empty{color:#ffbd6b}
-.nav{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}.nav button{background:#10151d;color:#dce5ef;border:1px solid #202a35;border-radius:14px;padding:13px;font-weight:700}
-footer{text-align:center;color:#667384;font-size:11px;margin-top:25px}
-@media(min-width:650px){.grid{grid-template-columns:repeat(3,1fr)}}
+*{
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent
+}
+
+body{
+margin:0;
+background:#080b10;
+color:#f5f7fa;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif
+}
+
+.app{
+width:100%;
+max-width:850px;
+margin:auto;
+padding:18px 15px 45px
+}
+
+.top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:18px
+}
+
+.logo{
+font-size:26px;
+font-weight:900;
+letter-spacing:.5px
+}
+
+.logo span{
+color:#65d9ff
+}
+
+.sub{
+font-size:12px;
+color:#8996a7;
+margin-top:4px
+}
+
+.badge{
+background:#111923;
+border:1px solid #263442;
+border-radius:14px;
+padding:9px 12px;
+color:#65d9ff;
+font-size:12px;
+font-weight:800
+}
+
+/* SEARCH */
+
+.search{
+display:flex;
+gap:8px;
+background:#10151d;
+border:1px solid #26313e;
+border-radius:18px;
+padding:9px;
+box-shadow:0 12px 35px #0007
+}
+
+.search input{
+width:100%;
+min-width:0;
+background:transparent;
+border:0;
+outline:0;
+color:white;
+font-size:16px;
+padding:9px
+}
+
+.search button{
+border:0;
+border-radius:13px;
+background:#65d9ff;
+color:#061017;
+font-weight:900;
+padding:10px 17px
+}
+
+.quick{
+display:flex;
+gap:8px;
+overflow-x:auto;
+padding:10px 1px 2px
+}
+
+.quick button{
+white-space:nowrap;
+background:#111923;
+color:#cbd6e2;
+border:1px solid #263442;
+border-radius:12px;
+padding:8px 12px
+}
+
+/* RESULT */
+
+.result{
+display:none;
+margin-top:15px;
+background:#0f151c;
+border:1px solid #26313e;
+border-radius:20px;
+padding:16px
+}
+
+.result h2{
+margin:0 0 13px
+}
+
+.specs{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px
+}
+
+.spec{
+background:#151d26;
+border-radius:13px;
+padding:11px
+}
+
+.spec small{
+display:block;
+color:#8996a7;
+font-size:11px
+}
+
+.spec strong{
+display:block;
+margin-top:5px;
+font-size:14px
+}
+
+.notice{
+margin-top:12px;
+padding:11px;
+border-radius:12px;
+background:#171e27;
+color:#b9c4d1;
+font-size:12px;
+line-height:1.6
+}
+
+.primary{
+width:100%;
+margin-top:12px;
+border:0;
+border-radius:13px;
+padding:13px;
+background:#65d9ff;
+color:#061017;
+font-weight:900
+}
+
+/* SECTIONS */
+
+.section{
+margin-top:22px
+}
+
+.title{
+font-size:17px;
+font-weight:900;
+margin-bottom:10px
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+
+.card{
+background:#10151d;
+border:1px solid #202a35;
+border-radius:17px;
+padding:15px
+}
+
+.click{
+cursor:pointer;
+transition:.15s
+}
+
+.click:active{
+transform:scale(.97)
+}
+
+.card b{
+display:block;
+font-size:15px
+}
+
+.muted{
+color:#8996a7;
+font-size:12px;
+margin-top:5px
+}
+
+/* PANELS */
+
+.panel{
+display:none;
+margin-top:20px
+}
+
+.panel.active{
+display:block
+}
+
+.item{
+background:#10151d;
+border:1px solid #202a35;
+border-radius:14px;
+padding:13px;
+margin-bottom:8px
+}
+
+.item strong{
+display:block;
+font-size:14px
+}
+
+.item span{
+display:block;
+margin-top:5px;
+font-size:12px;
+color:#91a0b0
+}
+
+.product{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+padding:12px 2px;
+border-bottom:1px solid #202832
+}
+
+.product:last-child{
+border-bottom:0
+}
+
+.ok{
+color:#73e2a0;
+font-weight:800
+}
+
+.warning{
+color:#ffbd6b;
+font-weight:800
+}
+
+/* NAV */
+
+.nav{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+margin-top:22px
+}
+
+.nav button{
+background:#10151d;
+color:#dce5ef;
+border:1px solid #202a35;
+border-radius:14px;
+padding:13px 5px;
+font-weight:800
+}
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:#000b;
+z-index:10;
+padding:18px;
+align-items:flex-end
+}
+
+.modal.show{
+display:flex
+}
+
+.modalbox{
+width:100%;
+max-width:850px;
+margin:auto;
+background:#10151d;
+border:1px solid #2a3947;
+border-radius:22px;
+padding:18px;
+max-height:88vh;
+overflow:auto
+}
+
+.close{
+float:left;
+border:0;
+background:#222d38;
+color:white;
+border-radius:10px;
+padding:7px 11px
+}
+
+.field{
+margin-top:13px
+}
+
+.field label{
+display:block;
+font-size:12px;
+color:#aeb9c6;
+margin-bottom:6px
+}
+
+.field input,
+.field select{
+width:100%;
+background:#0a0f15;
+border:1px solid #293744;
+border-radius:12px;
+color:white;
+padding:12px;
+outline:0;
+font-size:15px
+}
+
+footer{
+text-align:center;
+color:#667384;
+font-size:11px;
+margin-top:25px
+}
+
+@media(min-width:650px){
+.grid{
+grid-template-columns:repeat(3,1fr)
+}
+}
 </style>
 </head>
+
 <body>
+
 <div class="app">
-  <div class="top">
-    <div><div class="logo">AUTO <span>OIL PRO</span></div><div class="sub">ورشة • زيوت • فلاتر • مواصفات سيارات</div></div>
-    <div class="badge">V1.0</div>
-  </div>
 
-  <div class="search">
-    <input id="q" placeholder="مثال: Toyota Camry 2018 2.5" autocomplete="off">
-    <button onclick="searchCar()">بحث</button>
-  </div>
+<!-- HEADER -->
 
-  <div id="result" class="result"></div>
+<div class="top">
 
-  <div class="section">
-    <div class="title">الأقسام</div>
-    <div class="grid">
-      <div class="card"><b>🚗 السيارات</b><div class="muted">مواصفات وسعات</div></div>
-      <div class="card"><b>🛢️ زيوت المحرك</b><div class="muted">مخزونك الحالي</div></div>
-      <div class="card"><b>🔄 زيوت القير</b><div class="muted">ATF / CVT وغيرها</div></div>
-      <div class="card"><b>🔩 الفلاتر</b><div class="muted">الأكواد والتوافق</div></div>
-      <div class="card"><b>📦 المخزون</b><div class="muted">إدارة المنتجات</div></div>
-      <div class="card"><b>⭐ المحفوظة</b><div class="muted">سياراتك الأخيرة</div></div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="title">مخزون الزيوت</div>
-    <div id="oilList" class="card"></div>
-  </div>
-
-  <div class="section">
-    <div class="title">مخزون زيوت القير</div>
-    <div id="transList" class="card"></div>
-  </div>
-
-  <div class="section">
-    <div class="title">فلاتر الزيت — أكواد تحتاج تحقق</div>
-    <div id="filterList" class="card"></div>
-    <div class="notice">الأكواد محفوظة كما وصلتني. ما راح ننسب أي فلتر لسيارة قبل التحقق من الكتالوجات والمصادر.</div>
-  </div>
-
-  <div class="nav">
-    <button>🚗 السيارات</button><button>📦 المخزون</button><button>⚙️ الإعدادات</button>
-  </div>
-  <footer>Auto Oil Pro — قاعدة بيانات قابلة للتوسع</footer>
+<div>
+<div class="logo">
+AUTO <span>OIL PRO</span>
 </div>
 
-<script>
-let db=null;
-fetch("inventory.json").then(r=>r.json()).then(d=>{db=d;renderInventory()});
+<div class="sub">
+ورشة • زيوت • فلاتر • مواصفات سيارات
+</div>
+</div>
 
-function renderInventory(){
-  const oils=db.engine_oils.map(x=>`<div class="product"><span>${x.brand} — ${x.name}</span><span class="ok">${x.viscosity}</span></div>`).join("");
-  document.getElementById("oilList").innerHTML=oils;
-  document.getElementById("transList").innerHTML=db.transmission_fluids.map(x=>`<div class="product"><span>${x.brand} — ${x.name}</span><span class="ok">${x.type}</span></div>`).join("");
-  document.getElementById("filterList").innerHTML=db.oil_filters_raw.map(x=>`<div class="product"><span>${x}</span><span class="empty">غير متحقق</span></div>`).join("");
+<div class="badge">
+V2.0
+</div>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="search">
+
+<input
+id="searchInput"
+type="text"
+placeholder="ابحث عن السيارة..."
+autocomplete="off">
+
+<button onclick="searchCar()">
+بحث
+</button>
+
+</div>
+
+
+<div class="quick">
+
+<button onclick="quickSearch('Toyota Camry 2018')">
+Camry 2018
+</button>
+
+<button onclick="quickSearch('Chevrolet Aveo 2010')">
+Aveo 2010
+</button>
+
+<button onclick="quickSearch('Hyundai Elantra 2017')">
+Elantra 2017
+</button>
+
+</div>
+
+
+<!-- RESULT -->
+
+<div id="result" class="result"></div>
+
+
+<!-- MAIN SECTIONS -->
+
+<div class="section">
+
+<div class="title">
+الأقسام
+</div>
+
+<div class="grid">
+
+<div class="card click" onclick="openPanel('cars')">
+<b>🚗 السيارات</b>
+<div class="muted">
+البحث ومواصفات السيارات
+</div>
+</div>
+
+<div class="card click" onclick="openPanel('oils')">
+<b>🛢️ زيوت المحرك</b>
+<div class="muted">
+اللزوجة والمنتجات
+</div>
+</div>
+
+<div class="card click" onclick="openPanel('trans')">
+<b>🔄 زيوت القير</b>
+<div class="muted">
+ATF / CVT وغيرها
+</div>
+</div>
+
+<div class="card click" onclick="openPanel('filters')">
+<b>🔩 الفلاتر</b>
+<div class="muted">
+أكواد الفلاتر
+</div>
+</div>
+
+<div class="card click" onclick="openPanel('stock')">
+<b>📦 المخزون</b>
+<div class="muted">
+إدارة المنتجات
+</div>
+</div>
+
+<div class="card click" onclick="openPanel('saved')">
+<b>⭐ المحفوظة</b>
+<div class="muted">
+سياراتك المفضلة
+</div>
+</div>
+
+</div>
+</div>
+
+
+<!-- CARS -->
+
+<div id="cars" class="panel">
+
+<div class="title">
+🚗 قاعدة السيارات
+</div>
+
+<div id="carList"></div>
+
+</div>
+
+
+<!-- OILS -->
+
+<div id="oils" class="panel">
+
+<div class="title">
+🛢️ زيوت المحرك
+</div>
+
+<div class="card" id="oilList"></div>
+
+</div>
+
+
+<!-- TRANSMISSION -->
+
+<div id="trans" class="panel">
+
+<div class="title">
+🔄 زيوت القير
+</div>
+
+<div class="card" id="transList"></div>
+
+</div>
+
+
+<!-- FILTERS -->
+
+<div id="filters" class="panel">
+
+<div class="title">
+🔩 فلاتر الزيت
+</div>
+
+<div class="card" id="filterList"></div>
+
+<div class="notice">
+الأكواد الحالية تحتاج ربطها بالسيارات من كتالوج موثوق قبل اعتماد التوافق.
+</div>
+
+</div>
+
+
+<!-- STOCK -->
+
+<div id="stock" class="panel">
+
+<div class="title">
+📦 المخزون
+</div>
+
+<div id="stockList"></div>
+
+<button class="primary" onclick="openModal()">
++ إضافة منتج للمخزون
+</button>
+
+</div>
+
+
+<!-- SAVED -->
+
+<div id="saved" class="panel">
+
+<div class="title">
+⭐ السيارات المحفوظة
+</div>
+
+<div id="savedList"></div>
+
+</div>
+
+
+<!-- NAV -->
+
+<div class="nav">
+
+<button onclick="openPanel('cars')">
+🚗 السيارات
+</button>
+
+<button onclick="openPanel('stock')">
+📦 المخزون
+</button>
+
+<button onclick="openPanel('saved')">
+⭐ المحفوظة
+</button>
+
+</div>
+
+
+<footer>
+Auto Oil Pro — V2.0
+</footer>
+
+</div>
+
+
+<!-- ADD PRODUCT MODAL -->
+
+<div id="modal" class="modal">
+
+<div class="modalbox">
+
+<button class="close" onclick="closeModal()">
+✕
+</button>
+
+<h2>
+إضافة منتج
+</h2>
+
+<div class="field">
+
+<label>
+اسم المنتج
+</label>
+
+<input
+id="productName"
+placeholder="مثال: Castrol GTX">
+
+</div>
+
+
+<div class="field">
+
+<label>
+اللزوجة / النوع
+</label>
+
+<input
+id="productType"
+placeholder="مثال: 5W-30">
+
+</div>
+
+
+<div class="field">
+
+<label>
+الكمية
+</label>
+
+<input
+id="productQty"
+type="number"
+min="0"
+placeholder="10">
+
+</div>
+
+
+<button class="primary" onclick="addProduct()">
+حفظ المنتج
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   DATABASE
+========================= */
+
+const cars = [
+
+{
+id:1,
+make:"Toyota",
+model:"Camry",
+year:"2018",
+engine:"2.5L",
+transmission:"Automatic",
+oil:"—",
+oilQty:"—",
+gearOil:"—",
+filter:"—"
+},
+
+{
+id:2,
+make:"Chevrolet",
+model:"Aveo",
+year:"2010",
+engine:"1.6L",
+transmission:"Automatic / Manual",
+oil:"—",
+oilQty:"—",
+gearOil:"—",
+filter:"—"
+},
+
+{
+id:3,
+make:"Hyundai",
+model:"Elantra",
+year:"2017",
+engine:"2.0L",
+transmission:"Automatic",
+oil:"—",
+oilQty:"—",
+gearOil:"—",
+filter:"—"
 }
+
+];
+
+
+/* =========================
+   OILS
+========================= */
+
+const oils = [
+
+{
+brand:"Castrol",
+name:"GTX",
+viscosity:"10W-40"
+},
+
+{
+brand:"Castrol",
+name:"GTX",
+viscosity:"5W-30"
+},
+
+{
+brand:"Castrol",
+name:"GTX",
+viscosity:"5W-20"
+},
+
+{
+brand:"Castrol",
+name:"GTX",
+viscosity:"20W-50"
+},
+
+{
+brand:"Macktek",
+name:"Engine Oil",
+viscosity:"10W-40"
+},
+
+{
+brand:"Macktek",
+name:"Engine Oil",
+viscosity:"5W-30"
+},
+
+{
+brand:"Macktek",
+name:"Engine Oil",
+viscosity:"5W-20"
+},
+
+{
+brand:"Macktek",
+name:"Engine Oil",
+viscosity:"0W-20"
+},
+
+{
+brand:"Castrol Edge",
+name:"SE Gold",
+viscosity:"0W-20"
+},
+
+{
+brand:"Castrol Edge",
+name:"SE Black",
+viscosity:"5W-20"
+},
+
+{
+brand:"Castrol Edge",
+name:"SE Black",
+viscosity:"5W-30"
+},
+
+{
+brand:"Castrol Edge",
+name:"SE Black",
+viscosity:"10W-30"
+},
+
+{
+brand:"Castrol CRB",
+name:"Engine Oil",
+viscosity:"20W-50"
+},
+
+{
+brand:"Castrol CRB",
+name:"Engine Oil",
+viscosity:"15W-40"
+},
+
+{
+brand:"Valvoline",
+name:"Engine Oil",
+viscosity:"10W-30"
+},
+
+{
+brand:"Valvoline",
+name:"Engine Oil",
+viscosity:"5W-30"
+},
+
+{
+brand:"Valvoline",
+name:"Engine Oil",
+viscosity:"5W-20"
+}
+
+];
+
+
+/* =========================
+   TRANSMISSION OILS
+========================= */
+
+const transmissions = [
+
+{
+brand:"Valvoline",
+name:"MaxLife",
+type:"ATF"
+},
+
+{
+brand:"Valvoline",
+name:"ATF+4",
+type:"ATF"
+},
+
+{
+brand:"Valvoline",
+name:"CVT",
+type:"CVT"
+},
+
+{
+brand:"Stirlings",
+name:"Transmission Fluid",
+type:"6–8 Speed"
+}
+
+];
+
+
+/* =========================
+   FILTERS
+========================= */
+
+const filters = [
+
+"Car4u 42040",
+"Car4u PF66",
+"Wolf Red YZZD2",
+"Tibao PG99602EX",
+"Car4u 31UOO",
+"Car4u 349ABOO12",
+"Car4u 6714A",
+"Tibao 2U000",
+"Tibao 7524",
+"Tibao 38020",
+"Tibao 26AA",
+"GY MO 349",
+"Tibao 38010",
+"Tibao 2S000",
+"Tibao 6714A",
+"Wolf 35505",
+"Wolf 3CAA0"
+
+];
+
+
+/* =========================
+   LOCAL STORAGE
+========================= */
+
+let savedCars =
+JSON.parse(localStorage.getItem("autoOilSaved") || "[]");
+
+let stock =
+JSON.parse(localStorage.getItem("autoOilStock") || "[]");
+
+
+/* =========================
+   RENDER
+========================= */
+
+function render(){
+
+renderCars();
+
+renderOils();
+
+renderTransmissions();
+
+renderFilters();
+
+renderStock();
+
+renderSaved();
+
+}
+
+
+/* =========================
+   CARS
+========================= */
+
+function renderCars(){
+
+const box =
+document.getElementById("carList");
+
+box.innerHTML =
+cars.map(car => `
+
+<div
+class="item"
+onclick="showCar(${car.id})"
+>
+
+<strong>
+${car.make} ${car.model} ${car.year}
+</strong>
+
+<span>
+المحرك: ${car.engine}
+</span>
+
+<span>
+القير: ${car.transmission}
+</span>
+
+</div>
+
+`).join("");
+
+}
+
+
+function showCar(id){
+
+const car =
+cars.find(x => x.id === id);
+
+if(!car)return;
+
+document.getElementById("searchInput").value =
+`${car.make} ${car.model} ${car.year}`;
+
+showResult(car);
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
 
 function searchCar(){
-  const q=document.getElementById("q").value.trim();
-  const box=document.getElementById("result");
-  box.style.display="block";
-  if(!q){box.innerHTML="<h2>اكتب بيانات السيارة</h2><div class='notice'>مثال: Toyota Camry 2018 2.5</div>";return}
-  box.innerHTML=`<h2>🔎 نتيجة البحث</h2>
-  <div class="notice">بحثك: <b>${q}</b></div>
-  <div class="notice">قاعدة السيارات التفصيلية راح نضيفها بالمرحلة التالية. ما راح نخترع مواصفات أو سعات بدون مصدر موثوق.</div>
-  <div class="specs">
-    <div class="spec"><small>المحرك</small><strong>بانتظار تحديد النسخة</strong></div>
-    <div class="spec"><small>القير</small><strong>بانتظار تحديد النسخة</strong></div>
-    <div class="spec"><small>زيت المحرك</small><strong>—</strong></div>
-    <div class="spec"><small>كمية الزيت</small><strong>—</strong></div>
-  </div>`;
+
+const value =
+document
+.getElementById("searchInput")
+.value
+.trim()
+.toLowerCase();
+
+const result =
+document.getElementById("result");
+
+result.style.display="block";
+
+if(!value){
+
+result.innerHTML = `
+
+<h2>
+🔎 ابحث عن سيارة
+</h2>
+
+<div class="notice">
+اكتب الشركة + الموديل + السنة.
+<br>
+مثال: Toyota Camry 2018
+</div>
+
+`;
+
+return;
+
 }
-document.getElementById("q").addEventListener("keydown",e=>{if(e.key==="Enter")searchCar()});
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+
+const car =
+cars.find(x => {
+
+const full =
+`${x.make} ${x.model} ${x.year}`
+.toLowerCase();
+
+return full.includes(value)
+||
+value.includes(`${x.make.toLowerCase()} ${x.model.toLowerCase()}`);
+
+});
+
+if(!car){
+
+result.innerHTML = `
+
+<h2>
+❌ السيارة غير موجودة
+</h2>
+
+<div class="notice">
+هذه السيارة غير موجودة حالياً في قاعدة البيانات.
+سنضيف قاعدة سيارات أكبر بالمرحلة القادمة.
+</div>
+
+`;
+
+return;
+
+}
+
+showResult(car);
+
+}
+
+
+function showResult(car){
+
+const result =
+document.getElementById("result");
+
+result.style.display="block";
+
+result.innerHTML = `
+
+<h2>
+🚗 ${car.make} ${car.model} ${car.year}
+</h2>
+
+<div class="specs">
+
+<div class="spec">
+<small>المحرك</small>
+<strong>${car.engine}</strong>
+</div>
+
+<div class="spec">
+<small>القير</small>
+<strong>${car.transmission}</strong>
+</div>
+
+<div class="spec">
+<small>زيت المحرك</small>
+<strong>${car.oil}</strong>
+</div>
+
+<div class="spec">
+<small>كمية الزيت</small>
+<strong>${car.oilQty}</strong>
+</div>
+
+<div class="spec">
+<small>زيت القير</small>
+<strong>${car.gearOil}</strong>
+</div>
+
+<div class="spec">
+<small>فلتر الزيت</small>
+<strong>${car.filter}</strong>
+</div>
+
+</div>
+
+<button
+class="primary"
+onclick="saveCar(${car.id})"
+>
+⭐ حفظ السيارة
+</button>
+
+<div class="notice">
+⚠️ السعات والتوافق غير معتمدة بعد.
+لن نعتمد أي مواصفة للسيارة قبل التحقق من المصدر.
+</div>
+
+`;
+
+}
+
+
+function quickSearch(text){
+
+document.getElementById("searchInput").value=text;
+
+searchCar();
+
+}
+
+
+/* =========================
+   SAVE CARS
+========================= */
+
+function saveCar(id){
+
+const car =
+cars.find(x => x.id === id);
+
+if(!car)return;
+
+if(!savedCars.some(x => x.id === id)){
+
+savedCars.push(car);
+
+localStorage.setItem(
+"autoOilSaved",
+JSON.stringify(savedCars)
+);
+
+}
+
+renderSaved();
+
+openPanel("saved");
+
+}
+
+
+function renderSaved(){
+
+const box =
+document.getElementById("savedList");
+
+if(!savedCars.length){
+
+box.innerHTML = `
+
+<div class="item">
+
+<span>
+لا توجد سيارات محفوظة.
+</span>
+
+</div>
+
+`;
+
+return;
+
+}
+
+box.innerHTML =
+savedCars.map(car => `
+
+<div class="item">
+
+<strong>
+${car.make} ${car.model} ${car.year}
+</strong>
+
+<span>
+${car.engine} • ${car.transmission}
+</span>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =========================
+   OILS
+========================= */
+
+function renderOils(){
+
+document.getElementById("oilList").innerHTML =
+
+oils.map(oil => `
+
+<div class="product">
+
+<span>
+${oil.brand} — ${oil.name}
+</span>
+
+<span class="ok">
+${oil.viscosity}
+</span>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =========================
+   TRANSMISSIONS
+========================= */
+
+function renderTransmissions(){
+
+document.getElementById("transList").innerHTML =
+
+transmissions.map(oil => `
+
+<div class="product">
+
+<span>
+${oil.brand} — ${oil.name}
+</span>
+
+<span class="ok">
+${oil.type}
+</span>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =========================
+   FILTERS
+========================= */
+
+function renderFilters(){
+
+document.getElementById("filterList").innerHTML =
+
+filters.map(filter => `
+
+<div class="product">
+
+<span>
+${filter}
+</span>
+
+<span class="warning">
+غير متحقق
+</span>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =========================
+   STOCK
+========================= */
+
+function renderStock(){
+
+const box =
+document.getElementById("stockList");
+
+if(!stock.length){
+
+box.innerHTML = `
+
+<div class="item">
+
+<strong>
+📦 المخزون فارغ
+</strong>
+
+<span>
+اضغط إضافة منتج حتى تبدأ بإدارة مخزون الورشة.
+</span>
+
+</div>
+
+`;
+
+return;
+
+}
+
+box.innerHTML =
+stock.map((item,index) => `
+
+<div class="item">
+
+<strong>
+${item.name}
+</strong>
+
+<span>
+النوع: ${item.type}
+</span>
+
+<span>
+الكمية: ${item.qty}
+</span>
+
+<button
+style="
+margin-top:9px;
+background:#252f3a;
+border:0;
+color:white;
+padding:7px 11px;
+border-radius:9px;
+"
+onclick="removeProduct(${index})"
+>
+حذف
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+function openModal(){
+
+document
+.getElementById("modal")
+.classList.add("show");
+
+}
+
+
+function closeModal(){
+
+document
+.getElementById("modal")
+.classList.remove("show");
+
+}
+
+
+function addProduct(){
+
+const name =
+document
+.getElementById("productName")
+.value
+.trim();
+
+const type =
+document
+.getElementById("productType")
+.value
+.trim();
+
+const qty =
+document
+.getElementById("productQty")
+.value;
+
+if(!name){
+
+alert("اكتب اسم المنتج");
+
+return;
+
+}
+
+stock.push({
+
+name:name,
+
+type:type || "غير محدد",
+
+qty:qty || "0"
+
+});
+
+localStorage.setItem(
+"autoOilStock",
+JSON.stringify(stock)
+);
+
+document.getElementById("productName").value="";
+
+document.getElementById("productType").value="";
+
+document.getElementById("productQty").value="";
+
+closeModal();
+
+renderStock();
+
+openPanel("stock");
+
+}
+
+
+function removeProduct(index){
+
+stock.splice(index,1);
+
+localStorage.setItem(
+"autoOilStock",
+JSON.stringify(stock)
+);
+
+renderStock();
+
+}
+
+
+/* =========================
+   PANELS
+========================= */
+
+function openPanel(id){
+
+document
+.querySelectorAll(".panel")
+.forEach(panel =>
+panel.classList.remove("active")
+);
+
+const panel =
+document.getElementById(id);
+
+if(panel){
+
+panel.classList.add("active");
+
+panel.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+}
+
+
+/* =========================
+   ENTER SEARCH
+========================= */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+"keydown",
+function(e){
+
+if(e.key==="Enter"){
+
+searchCar();
+
+}
+
+});
+
+
+/* =========================
+   START
+========================= */
+
+render();
+
 </script>
+
 </body>
 </html>
