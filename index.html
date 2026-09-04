@@ -2,175 +2,124 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Auto Oil Pro</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
+*{box-sizing:border-box}
 body{
+    margin:0;
     font-family:Arial,sans-serif;
-    background:#0b0f14;
+    background:#0f1115;
     color:#fff;
-    min-height:100vh;
 }
-
-header{
-    background:#111820;
-    padding:20px;
-    text-align:center;
-    border-bottom:1px solid #26313d;
-}
-
-header h1{
-    font-size:28px;
-    margin-bottom:8px;
-}
-
-.badge{
-    display:inline-block;
-    background:#1d8cff;
-    padding:5px 12px;
-    border-radius:20px;
-    font-size:12px;
-}
-
 .container{
     max-width:900px;
     margin:auto;
-    padding:20px;
+    padding:18px;
 }
-
-.search-box{
+header{
+    text-align:center;
+    padding:20px 10px;
+}
+h1{
+    margin:0 0 8px;
+    font-size:30px;
+}
+.badge{
+    display:inline-block;
+    padding:5px 12px;
+    border-radius:20px;
+    background:#222831;
+    color:#00d4ff;
+    font-size:13px;
+}
+.card{
+    background:#181c23;
+    border:1px solid #292f38;
+    border-radius:15px;
+    padding:16px;
+    margin:14px 0;
+}
+.search{
     display:flex;
-    gap:10px;
-    margin-bottom:20px;
+    gap:8px;
 }
-
-.search-box input{
+input{
     flex:1;
-    padding:15px;
-    border-radius:12px;
-    border:1px solid #34414f;
-    background:#151d26;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #343b46;
+    background:#101318;
     color:#fff;
     font-size:16px;
 }
-
 button{
-    border:none;
-    border-radius:12px;
-    padding:12px 18px;
-    background:#1d8cff;
+    border:0;
+    border-radius:10px;
+    padding:12px 16px;
+    background:#00a8ff;
     color:white;
     font-size:15px;
-    cursor:pointer;
+    font-weight:bold;
 }
-
-button:hover{
-    opacity:.9;
+button:active{
+    transform:scale(.98);
 }
-
 .quick{
     display:flex;
-    flex-wrap:wrap;
     gap:8px;
-    margin-bottom:25px;
+    flex-wrap:wrap;
+    margin-top:12px;
 }
-
 .quick button{
-    background:#18222d;
-    border:1px solid #304050;
+    background:#252c35;
     font-size:13px;
 }
-
-.card{
-    background:#111820;
-    border:1px solid #26313d;
-    border-radius:16px;
-    padding:18px;
-    margin-bottom:15px;
-}
-
-.card h2{
-    margin-bottom:15px;
-    color:#5eb0ff;
-}
-
-.info-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.info{
-    background:#18212b;
-    padding:12px;
-    border-radius:10px;
-}
-
-.label{
-    color:#8e9baa;
-    font-size:12px;
-    margin-bottom:5px;
-}
-
-.value{
-    font-size:15px;
-}
-
-.warning{
-    background:#3a2e12;
-    border:1px solid #765d20;
-    color:#ffd76a;
-    padding:12px;
-    border-radius:10px;
-    margin-top:15px;
-    line-height:1.6;
-}
-
-.empty{
-    text-align:center;
-    color:#8995a2;
-    padding:30px 10px;
-}
-
-.item{
-    background:#18212b;
-    padding:13px;
-    border-radius:10px;
-    margin-bottom:8px;
-}
-
-.item strong{
-    display:block;
-    margin-bottom:5px;
-}
-
 .section-title{
-    margin:25px 0 12px;
-    color:#fff;
-    font-size:20px;
+    font-size:21px;
+    margin:22px 0 10px;
 }
-
+.item{
+    background:#20252d;
+    border:1px solid #303741;
+    border-radius:12px;
+    padding:13px;
+    margin:8px 0;
+}
+.small{
+    color:#aeb7c2;
+    font-size:13px;
+    margin-top:5px;
+}
+.empty{
+    color:#9ba5b1;
+    text-align:center;
+    padding:15px;
+}
 .status{
     text-align:center;
-    color:#7f8b98;
-    font-size:13px;
-    margin-top:20px;
+    padding:10px;
+    border-radius:10px;
+    background:#171b21;
+    color:#b8c1cb;
+    margin-top:12px;
 }
-
+.info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+.info div{
+    background:#20252d;
+    padding:10px;
+    border-radius:9px;
+}
 @media(max-width:600px){
-    .search-box{
+    .search{
         flex-direction:column;
     }
-
-    .info-grid{
+    .info{
         grid-template-columns:1fr;
     }
 }
@@ -179,51 +128,43 @@ button:hover{
 
 <body>
 
+<div class="container">
+
 <header>
     <h1>🚗 Auto Oil Pro</h1>
     <span class="badge">V2.1</span>
 </header>
 
-<div class="container">
-
-    <div class="search-box">
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="اكتب اسم السيارة أو الموديل..."
-            onkeydown="if(event.key==='Enter') searchCar()"
-        >
+<div class="card">
+    <div class="search">
+        <input id="searchInput" placeholder="اكتب اسم السيارة...">
         <button onclick="searchCar()">🔍 بحث</button>
     </div>
 
     <div class="quick">
-        <button onclick="quickSearch('Toyota Camry 2018')">
-            Toyota Camry 2018
-        </button>
-
-        <button onclick="quickSearch('Chevrolet Aveo 2010')">
-            Chevrolet Aveo 2010
-        </button>
-
-        <button onclick="quickSearch('Hyundai Elantra 2017')">
-            Hyundai Elantra 2017
-        </button>
+        <button onclick="quickSearch('Toyota Camry 2018')">Camry 2018</button>
+        <button onclick="quickSearch('Chevrolet Aveo 2010')">Aveo 2010</button>
+        <button onclick="quickSearch('Hyundai Elantra 2017')">Elantra 2017</button>
     </div>
+</div>
 
-    <div id="result"></div>
+<div id="result"></div>
 
-    <h2 class="section-title">🛢️ زيوت المحرك</h2>
-    <div id="oils"></div>
+<div id="status" class="status">
+    ⏳ جاري تحميل قاعدة البيانات...
+</div>
 
-    <h2 class="section-title">⚙️ زيوت القير</h2>
-    <div id="transmissions"></div>
+<h2 class="section-title">🛢️ زيوت المحرك</h2>
+<div id="oils"></div>
 
-    <h2 class="section-title">🔧 فلاتر الزيت</h2>
-    <div id="filters"></div>
+<h2 class="section-title">⚙️ زيوت القير</h2>
+<div id="transmissions"></div>
 
-    <div class="status" id="status">
-        جاري تحميل قاعدة البيانات...
-    </div>
+<h2 class="section-title">🔧 فلاتر الزيت</h2>
+<div id="filters"></div>
+
+<h2 class="section-title">📦 مخزون الزيوت</h2>
+<div id="stock"></div>
 
 </div>
 
@@ -235,10 +176,6 @@ let inventory = {
     oil_filters_raw: []
 };
 
-/* =========================
-   تحميل inventory.json
-========================= */
-
 async function loadInventory(){
 
     const status = document.getElementById("status");
@@ -246,7 +183,7 @@ async function loadInventory(){
     try{
 
         const response = await fetch("./inventory.json", {
-            cache: "no-store"
+            cache:"no-store"
         });
 
         if(!response.ok){
@@ -266,30 +203,19 @@ async function loadInventory(){
         console.error(error);
 
         status.textContent =
-            "❌ تعذر تحميل inventory.json — تأكد أن الملف موجود بنفس مجلد index.html";
+        "❌ تعذر تحميل inventory.json — تأكد أن الملف موجود بنفس مجلد index.html";
 
         renderInventory();
-
     }
 }
-
-
-/* =========================
-   عرض البيانات
-========================= */
 
 function renderInventory(){
 
     renderOils();
     renderTransmissions();
     renderFilters();
-
+    renderStock();
 }
-
-
-/* =========================
-   زيوت المحرك
-========================= */
 
 function renderOils(){
 
@@ -303,7 +229,7 @@ function renderOils(){
     ){
 
         box.innerHTML =
-            '<div class="empty">لا توجد زيوت في قاعدة البيانات</div>';
+        '<div class="card"><div class="empty">لا توجد زيوت محرك في قاعدة البيانات</div></div>';
 
         return;
     }
@@ -311,6 +237,8 @@ function renderOils(){
     inventory.engine_oils.forEach((oil)=>{
 
         let name = "";
+        let brand = "";
+        let viscosity = "";
 
         if(typeof oil === "string"){
 
@@ -318,29 +246,31 @@ function renderOils(){
 
         }else{
 
-            name =
-                oil.name ||
-                oil.brand ||
-                oil.product ||
-                oil.viscosity ||
-                JSON.stringify(oil);
+            brand = oil.brand || "";
+            name = oil.name || oil.product || "";
+            viscosity = oil.viscosity || "";
 
         }
 
         box.innerHTML += `
             <div class="item">
                 <strong>🛢️ ${escapeHtml(name)}</strong>
+
+                ${
+                    brand
+                    ? `<div class="small">الشركة: ${escapeHtml(brand)}</div>`
+                    : ""
+                }
+
+                ${
+                    viscosity
+                    ? `<div class="small">اللزوجة: ${escapeHtml(viscosity)}</div>`
+                    : ""
+                }
             </div>
         `;
-
     });
-
 }
-
-
-/* =========================
-   زيوت القير
-========================= */
 
 function renderTransmissions(){
 
@@ -354,7 +284,7 @@ function renderTransmissions(){
     ){
 
         box.innerHTML =
-            '<div class="empty">لا توجد زيوت قير في قاعدة البيانات</div>';
+        '<div class="card"><div class="empty">لا توجد زيوت قير في قاعدة البيانات</div></div>';
 
         return;
     }
@@ -362,6 +292,7 @@ function renderTransmissions(){
     inventory.transmission_fluids.forEach((fluid)=>{
 
         let name = "";
+        let brand = "";
 
         if(typeof fluid === "string"){
 
@@ -369,28 +300,28 @@ function renderTransmissions(){
 
         }else{
 
+            brand = fluid.brand || "";
             name =
                 fluid.name ||
-                fluid.brand ||
                 fluid.product ||
-                JSON.stringify(fluid);
+                fluid.type ||
+                "";
 
         }
 
         box.innerHTML += `
             <div class="item">
                 <strong>⚙️ ${escapeHtml(name)}</strong>
+
+                ${
+                    brand
+                    ? `<div class="small">الشركة: ${escapeHtml(brand)}</div>`
+                    : ""
+                }
             </div>
         `;
-
     });
-
 }
-
-
-/* =========================
-   الفلاتر
-========================= */
 
 function renderFilters(){
 
@@ -404,7 +335,7 @@ function renderFilters(){
     ){
 
         box.innerHTML =
-            '<div class="empty">لا توجد فلاتر في قاعدة البيانات</div>';
+        '<div class="card"><div class="empty">لا توجد فلاتر في قاعدة البيانات</div></div>';
 
         return;
     }
@@ -423,7 +354,8 @@ function renderFilters(){
                 filter.name ||
                 filter.code ||
                 filter.brand ||
-                JSON.stringify(filter);
+                filter.product ||
+                "";
 
         }
 
@@ -432,15 +364,55 @@ function renderFilters(){
                 <strong>🔧 ${escapeHtml(name)}</strong>
             </div>
         `;
-
     });
-
 }
 
+function renderStock(){
 
-/* =========================
-   البحث عن السيارة
-========================= */
+    const box = document.getElementById("stock");
+
+    let stock = [];
+
+    try{
+
+        stock = JSON.parse(
+            localStorage.getItem("oilStock") || "[]"
+        );
+
+    }catch(e){
+
+        stock = [];
+    }
+
+    if(stock.length === 0){
+
+        box.innerHTML = `
+            <div class="card">
+                <div class="empty">
+                    مخزون الزيوت فارغ حاليًا
+                </div>
+            </div>
+        `;
+
+        return;
+    }
+
+    box.innerHTML = "";
+
+    stock.forEach((item)=>{
+
+        let name =
+            typeof item === "string"
+            ? item
+            : item.name || item.product || "زيت";
+
+        box.innerHTML += `
+            <div class="item">
+                <strong>📦 ${escapeHtml(name)}</strong>
+            </div>
+        `;
+    });
+}
 
 const cars = [
 
@@ -479,11 +451,12 @@ const cars = [
 
 ];
 
-
 function searchCar(){
 
     const input =
-        document.getElementById("searchInput").value
+        document
+        .getElementById("searchInput")
+        .value
         .trim()
         .toLowerCase();
 
@@ -503,16 +476,19 @@ function searchCar(){
         return;
     }
 
-    const matches = cars.filter(car =>
-        car.name.toLowerCase().includes(input)
-    );
+    const matches =
+        cars.filter(car =>
+            car.name
+            .toLowerCase()
+            .includes(input)
+        );
 
     if(matches.length === 0){
 
         result.innerHTML = `
             <div class="card">
                 <div class="empty">
-                    ❌ ما لكيت سيارة بهذا الاسم حالياً
+                    ❌ ما لكيت سيارة بهذا الاسم حاليًا
                     <br><br>
                     قاعدة السيارات راح نوسعها بالخطوة الجاية.
                 </div>
@@ -525,18 +501,14 @@ function searchCar(){
     result.innerHTML = "";
 
     matches.forEach(showResult);
-
 }
-
 
 function quickSearch(name){
 
     document.getElementById("searchInput").value = name;
 
     searchCar();
-
 }
-
 
 function showResult(car){
 
@@ -549,75 +521,53 @@ function showResult(car){
 
             <h2>🚗 ${escapeHtml(car.name)}</h2>
 
-            <div class="info-grid">
+            <div class="info">
 
-                <div class="info">
-                    <div class="label">سعة المحرك</div>
-                    <div class="value">
-                        ${escapeHtml(car.engine)}
-                    </div>
+                <div>
+                    <strong>المحرك</strong><br>
+                    ${escapeHtml(car.engine)}
                 </div>
 
-                <div class="info">
-                    <div class="label">عدد السلندرات</div>
-                    <div class="value">
-                        ${escapeHtml(car.cylinders)}
-                    </div>
+                <div>
+                    <strong>عدد السلندرات</strong><br>
+                    ${escapeHtml(car.cylinders)}
                 </div>
 
-                <div class="info">
-                    <div class="label">نوع القير</div>
-                    <div class="value">
-                        ${escapeHtml(car.transmission)}
-                    </div>
+                <div>
+                    <strong>القير</strong><br>
+                    ${escapeHtml(car.transmission)}
                 </div>
 
-                <div class="info">
-                    <div class="label">زيت المحرك</div>
-                    <div class="value">
-                        ${escapeHtml(car.oil)}
-                    </div>
+                <div>
+                    <strong>زيت المحرك</strong><br>
+                    ${escapeHtml(car.oil)}
                 </div>
 
-                <div class="info">
-                    <div class="label">كمية زيت المحرك</div>
-                    <div class="value">
-                        ${escapeHtml(car.oilQty)}
-                    </div>
+                <div>
+                    <strong>كمية الزيت</strong><br>
+                    ${escapeHtml(car.oilQty)}
                 </div>
 
-                <div class="info">
-                    <div class="label">زيت القير</div>
-                    <div class="value">
-                        ${escapeHtml(car.gearOil)}
-                    </div>
+                <div>
+                    <strong>زيت القير</strong><br>
+                    ${escapeHtml(car.gearOil)}
                 </div>
 
-                <div class="info">
-                    <div class="label">فلتر الزيت</div>
-                    <div class="value">
-                        ${escapeHtml(car.filter)}
-                    </div>
+                <div>
+                    <strong>فلتر الزيت</strong><br>
+                    ${escapeHtml(car.filter)}
                 </div>
 
             </div>
 
-            <div class="warning">
-                ⚠️ تنبيه:
-                معلومات السعات والتوافق غير معتمدة بعد.
-                لن نعتمد مواصفة للسيارة قبل التحقق من مصدر موثوق.
+            <div class="status">
+                ⚠️ المواصفات والسعات والتوافق تحتاج تحقق من المصدر قبل اعتمادها.
             </div>
 
         </div>
 
     `;
-
 }
-
-
-/* =========================
-   حماية النص
-========================= */
 
 function escapeHtml(text){
 
@@ -627,13 +577,7 @@ function escapeHtml(text){
         .replaceAll(">","&gt;")
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
-
 }
-
-
-/* =========================
-   تشغيل البرنامج
-========================= */
 
 loadInventory();
 
