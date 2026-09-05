@@ -53,8 +53,8 @@ h1{
     gap:8px;
 }
 
-input{
-    flex:1;
+input,select{
+    width:100%;
     padding:14px;
     border-radius:10px;
     border:1px solid #343b46;
@@ -135,6 +135,22 @@ button:active{
     border-radius:9px;
 }
 
+.selector{
+    display:grid;
+    gap:10px;
+    margin-top:12px;
+}
+
+.selector label{
+    color:#b8c1cb;
+    font-size:14px;
+}
+
+.selector button{
+    width:100%;
+    margin-top:4px;
+}
+
 @media(max-width:600px){
 
     .search{
@@ -154,8 +170,60 @@ button:active{
 
 <header>
     <h1>🚗 Auto Oil Pro</h1>
-    <span class="badge">V2.1</span>
+    <span class="badge">V2.2</span>
 </header>
+
+
+<!-- =========================
+     اختيار السيارة
+========================= -->
+
+<div class="card">
+
+    <h2>🔎 اختيار السيارة</h2>
+
+    <div class="selector">
+
+        <div>
+            <label>الشركة</label>
+            <select id="makeSelect" onchange="updateModels()">
+                <option value="">اختر الشركة</option>
+            </select>
+        </div>
+
+        <div>
+            <label>الموديل</label>
+            <select id="modelSelect" onchange="updateYears()" disabled>
+                <option value="">اختر الموديل</option>
+            </select>
+        </div>
+
+        <div>
+            <label>السنة</label>
+            <select id="yearSelect" onchange="updateEngines()" disabled>
+                <option value="">اختر السنة</option>
+            </select>
+        </div>
+
+        <div>
+            <label>المحرك</label>
+            <select id="engineSelect" disabled>
+                <option value="">اختر المحرك</option>
+            </select>
+        </div>
+
+        <button onclick="showSelectedCar()">
+            🚗 عرض مواصفات السيارة
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     البحث النصي
+========================= -->
 
 <div class="card">
 
@@ -163,7 +231,8 @@ button:active{
 
         <input
             id="searchInput"
-            placeholder="اكتب اسم السيارة..."
+            placeholder="أو اكتب اسم السيارة..."
+            onkeydown="if(event.key==='Enter') searchCar()"
         >
 
         <button onclick="searchCar()">
@@ -181,628 +250,3 @@ button:active{
         <button onclick="quickSearch('Chevrolet Aveo 2010')">
             Aveo 2010
         </button>
-
-        <button onclick="quickSearch('Hyundai Elantra 2017')">
-            Elantra 2017
-        </button>
-
-    </div>
-
-</div>
-
-<div id="result"></div>
-
-<div id="status" class="status">
-    ⏳ جاري تحميل قاعدة البيانات...
-</div>
-
-<h2 class="section-title">🛢️ زيوت المحرك</h2>
-<div id="oils"></div>
-
-<h2 class="section-title">⚙️ زيوت القير</h2>
-<div id="transmissions"></div>
-
-<h2 class="section-title">🔧 فلاتر الزيت</h2>
-<div id="filters"></div>
-
-<h2 class="section-title">📦 مخزون الزيوت</h2>
-<div id="stock"></div>
-
-</div>
-
-<script>
-
-let inventory = {
-    engine_oils: [],
-    transmission_fluids: [],
-    oil_filters_raw: []
-};
-
-let cars = [];
-
-
-/* =========================
-   حماية النصوص
-========================= */
-
-function escapeHtml(text){
-
-    return String(text ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-}
-
-
-/* =========================
-   تحميل المخزون
-========================= */
-
-async function loadInventory(){
-
-    const status =
-        document.getElementById("status");
-
-    try{
-
-        const response =
-            await fetch("./inventory.json", {
-                cache:"no-store"
-            });
-
-        if(!response.ok){
-            throw new Error(
-                "HTTP " + response.status
-            );
-        }
-
-        inventory =
-            await response.json();
-
-        console.log(
-            "Inventory loaded:",
-            inventory
-        );
-
-        renderInventory();
-
-        status.textContent =
-            "✅ قاعدة البيانات محملة بنجاح";
-
-    }catch(error){
-
-        console.error(
-            "Inventory error:",
-            error
-        );
-
-        status.textContent =
-            "⚠️ تم تحميل البرنامج، لكن inventory.json غير متوفر";
-
-        renderInventory();
-    }
-}
-
-
-/* =========================
-   عرض المخزون
-========================= */
-
-function renderInventory(){
-
-    renderOils();
-    renderTransmissions();
-    renderFilters();
-    renderStock();
-}
-
-
-/* =========================
-   زيوت المحرك
-========================= */
-
-function renderOils(){
-
-    const box =
-        document.getElementById("oils");
-
-    box.innerHTML = "";
-
-    if(
-        !inventory.engine_oils ||
-        inventory.engine_oils.length === 0
-    ){
-
-        box.innerHTML = `
-            <div class="card">
-                <div class="empty">
-                    لا توجد زيوت محرك في قاعدة البيانات
-                </div>
-            </div>
-        `;
-
-        return;
-    }
-
-    inventory.engine_oils.forEach(oil => {
-
-        let name = "";
-        let brand = "";
-        let viscosity = "";
-
-        if(typeof oil === "string"){
-
-            name = oil;
-
-        }else{
-
-            brand =
-                oil.brand || "";
-
-            name =
-                oil.name ||
-                oil.product ||
-                "";
-
-            viscosity =
-                oil.viscosity ||
-                "";
-        }
-
-        box.innerHTML += `
-
-            <div class="item">
-
-                <strong>
-                    🛢️ ${escapeHtml(name)}
-                </strong>
-
-                ${
-                    brand
-                    ? `
-                        <div class="small">
-                            الشركة:
-                            ${escapeHtml(brand)}
-                        </div>
-                    `
-                    : ""
-                }
-
-                ${
-                    viscosity
-                    ? `
-                        <div class="small">
-                            اللزوجة:
-                            ${escapeHtml(viscosity)}
-                        </div>
-                    `
-                    : ""
-                }
-
-            </div>
-        `;
-    });
-}
-
-
-/* =========================
-   زيوت القير
-========================= */
-
-function renderTransmissions(){
-
-    const box =
-        document.getElementById("transmissions");
-
-    box.innerHTML = "";
-
-    if(
-        !inventory.transmission_fluids ||
-        inventory.transmission_fluids.length === 0
-    ){
-
-        box.innerHTML = `
-            <div class="card">
-                <div class="empty">
-                    لا توجد زيوت قير في قاعدة البيانات
-                </div>
-            </div>
-        `;
-
-        return;
-    }
-
-    inventory.transmission_fluids.forEach(fluid => {
-
-        let name = "";
-        let brand = "";
-
-        if(typeof fluid === "string"){
-
-            name = fluid;
-
-        }else{
-
-            brand =
-                fluid.brand || "";
-
-            name =
-                fluid.name ||
-                fluid.product ||
-                fluid.type ||
-                "";
-        }
-
-        box.innerHTML += `
-
-            <div class="item">
-
-                <strong>
-                    ⚙️ ${escapeHtml(name)}
-                </strong>
-
-                ${
-                    brand
-                    ? `
-                        <div class="small">
-                            الشركة:
-                            ${escapeHtml(brand)}
-                        </div>
-                    `
-                    : ""
-                }
-
-            </div>
-        `;
-    });
-}
-
-
-/* =========================
-   فلاتر الزيت
-========================= */
-
-function renderFilters(){
-
-    const box =
-        document.getElementById("filters");
-
-    box.innerHTML = "";
-
-    if(
-        !inventory.oil_filters_raw ||
-        inventory.oil_filters_raw.length === 0
-    ){
-
-        box.innerHTML = `
-            <div class="card">
-                <div class="empty">
-                    لا توجد فلاتر في قاعدة البيانات
-                </div>
-            </div>
-        `;
-
-        return;
-    }
-
-    inventory.oil_filters_raw.forEach(filter => {
-
-        let name = "";
-
-        if(typeof filter === "string"){
-
-            name = filter;
-
-        }else{
-
-            name =
-                filter.name ||
-                filter.code ||
-                filter.brand ||
-                filter.product ||
-                "";
-        }
-
-        box.innerHTML += `
-
-            <div class="item">
-
-                <strong>
-                    🔧 ${escapeHtml(name)}
-                </strong>
-
-            </div>
-        `;
-    });
-}
-
-
-/* =========================
-   المخزون المحلي
-========================= */
-
-function renderStock(){
-
-    const box =
-        document.getElementById("stock");
-
-    let stock = [];
-
-    try{
-
-        stock =
-            JSON.parse(
-                localStorage.getItem("oilStock") || "[]"
-            );
-
-    }catch(error){
-
-        stock = [];
-    }
-
-    if(stock.length === 0){
-
-        box.innerHTML = `
-            <div class="card">
-                <div class="empty">
-                    مخزون الزيوت فارغ حاليًا
-                </div>
-            </div>
-        `;
-
-        return;
-    }
-
-    box.innerHTML = "";
-
-    stock.forEach(item => {
-
-        const name =
-            typeof item === "string"
-            ? item
-            : item.name ||
-              item.product ||
-              "زيت";
-
-        box.innerHTML += `
-
-            <div class="item">
-
-                <strong>
-                    📦 ${escapeHtml(name)}
-                </strong>
-
-            </div>
-        `;
-    });
-}
-
-
-/* =========================
-   البحث عن السيارة
-========================= */
-
-function searchCar(){
-
-    const input =
-        document
-        .getElementById("searchInput")
-        .value
-        .trim()
-        .toLowerCase();
-
-    const result =
-        document.getElementById("result");
-
-    if(!input){
-
-        result.innerHTML = `
-            <div class="card">
-                <div class="empty">
-                    اكتب اسم السيارة أولاً 🔍
-                </div>
-            </div>
-        `;
-
-        return;
-    }
-
-    const matches =
-        cars.filter(car => {
-
-            const name =
-                `
-                ${car.make || ""}
-                ${car.model || ""}
-                ${car.years || ""}
-                `
-                .toLowerCase();
-
-            return name.includes(input);
-        });
-
-    if(matches.length === 0){
-
-        result.innerHTML = `
-            <div class="card">
-                <div class="empty">
-                    ❌ ما لكيت سيارة بهذا الاسم حاليًا
-                </div>
-            </div>
-        `;
-
-        return;
-    }
-
-    result.innerHTML = "";
-
-    matches.forEach(showResult);
-}
-
-
-/* =========================
-   البحث السريع
-========================= */
-
-function quickSearch(name){
-
-    document
-        .getElementById("searchInput")
-        .value = name;
-
-    searchCar();
-}
-
-
-/* =========================
-   عرض السيارة
-========================= */
-
-function showResult(car){
-
-    const result =
-        document.getElementById("result");
-
-    const carName =
-        `${car.make || ""} ${car.model || ""}`.trim();
-
-    result.innerHTML += `
-
-        <div class="card">
-
-            <h2>
-                🚗 ${escapeHtml(carName)}
-            </h2>
-
-            <div class="info">
-
-                <div>
-                    <strong>السنوات</strong><br>
-                    ${escapeHtml(car.years || "-")}
-                </div>
-
-                <div>
-                    <strong>المحرك</strong><br>
-                    ${escapeHtml(car.engine || "-")}
-                </div>
-
-                <div>
-                    <strong>عدد السلندرات</strong><br>
-                    ${escapeHtml(car.cylinders || "-")}
-                </div>
-
-                <div>
-                    <strong>زيت المحرك</strong><br>
-                    ${escapeHtml(
-                        car.engineOil?.viscosity || "-"
-                    )}
-                </div>
-
-                <div>
-                    <strong>كمية زيت المحرك</strong><br>
-                    ${escapeHtml(
-                        car.engineOil?.capacity || "-"
-                    )}
-                </div>
-
-                <div>
-                    <strong>القير</strong><br>
-                    ${escapeHtml(
-                        car.transmission?.type || "-"
-                    )}
-                </div>
-
-                <div>
-                    <strong>زيت القير</strong><br>
-                    ${escapeHtml(
-                        car.transmission?.fluid || "-"
-                    )}
-                </div>
-
-                <div>
-                    <strong>كمية زيت القير</strong><br>
-                    ${escapeHtml(
-                        car.transmission?.capacity || "-"
-                    )}
-                </div>
-
-                <div>
-                    <strong>فلتر الزيت</strong><br>
-                    ${escapeHtml(
-                        car.oilFilter || "غير محدد"
-                    )}
-                </div>
-
-            </div>
-
-            <div class="status">
-                ⚠️ المواصفات والسعات والتوافق تحتاج تحقق من المصدر قبل اعتمادها.
-            </div>
-
-        </div>
-    `;
-}
-
-
-/* =========================
-   تحميل السيارات
-========================= */
-
-async function loadCars(){
-
-    try{
-
-        const response =
-            await fetch("./cars.json", {
-                cache:"no-store"
-            });
-
-        if(!response.ok){
-
-            throw new Error(
-                "HTTP " + response.status
-            );
-        }
-
-        const data =
-            await response.json();
-
-        cars =
-            Array.isArray(data)
-            ? data
-            : (data.cars || []);
-
-        console.log(
-            "تم تحميل قاعدة السيارات:",
-            cars
-        );
-
-    }catch(error){
-
-        console.error(
-            "خطأ في تحميل السيارات:",
-            error
-        );
-
-        cars = [];
-
-        document.getElementById("status")
-            .textContent =
-            "❌ تعذر تحميل cars.json";
-    }
-}
-
-
-/* =========================
-   تشغيل البرنامج
-========================= */
-
-loadInventory();
-loadCars();
-
-</script>
-
-</body>
-</html>
