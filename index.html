@@ -414,42 +414,7 @@ function renderStock(){
     });
 }
 
-const cars = [
-
-    {
-        name:"Toyota Camry 2018",
-        engine:"2.5L",
-        cylinders:"4",
-        transmission:"Automatic",
-        oil:"غير محدد",
-        oilQty:"غير محدد",
-        gearOil:"غير محدد",
-        filter:"غير محدد"
-    },
-
-    {
-        name:"Chevrolet Aveo 2010",
-        engine:"1.6L",
-        cylinders:"4",
-        transmission:"Automatic / Manual",
-        oil:"غير محدد",
-        oilQty:"غير محدد",
-        gearOil:"غير محدد",
-        filter:"غير محدد"
-    },
-
-    {
-        name:"Hyundai Elantra 2017",
-        engine:"2.0L",
-        cylinders:"4",
-        transmission:"Automatic",
-        oil:"غير محدد",
-        oilQty:"غير محدد",
-        gearOil:"غير محدد",
-        filter:"غير محدد"
-    }
-
-];
+let cars = [];
 
 function searchCar(){
 
@@ -592,7 +557,9 @@ async function loadCars(){
         }
 
         const data = await response.json();
-
+        
+        cars = data.cars || [];
+  
         console.log("تم تحميل قاعدة السيارات:", data.cars);
 
     }catch(error){
