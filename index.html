@@ -7,25 +7,30 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
     margin:0;
     font-family:Arial,sans-serif;
     background:#0f1115;
     color:#fff;
 }
+
 .container{
     max-width:900px;
     margin:auto;
     padding:18px;
 }
+
 header{
     text-align:center;
     padding:20px 10px;
 }
+
 h1{
     margin:0 0 8px;
     font-size:30px;
 }
+
 .badge{
     display:inline-block;
     padding:5px 12px;
@@ -34,6 +39,7 @@ h1{
     color:#00d4ff;
     font-size:13px;
 }
+
 .card{
     background:#181c23;
     border:1px solid #292f38;
@@ -41,10 +47,12 @@ h1{
     padding:16px;
     margin:14px 0;
 }
+
 .search{
     display:flex;
     gap:8px;
 }
+
 input{
     flex:1;
     padding:14px;
@@ -54,6 +62,7 @@ input{
     color:#fff;
     font-size:16px;
 }
+
 button{
     border:0;
     border-radius:10px;
@@ -63,23 +72,28 @@ button{
     font-size:15px;
     font-weight:bold;
 }
+
 button:active{
     transform:scale(.98);
 }
+
 .quick{
     display:flex;
     gap:8px;
     flex-wrap:wrap;
     margin-top:12px;
 }
+
 .quick button{
     background:#252c35;
     font-size:13px;
 }
+
 .section-title{
     font-size:21px;
     margin:22px 0 10px;
 }
+
 .item{
     background:#20252d;
     border:1px solid #303741;
@@ -87,16 +101,19 @@ button:active{
     padding:13px;
     margin:8px 0;
 }
+
 .small{
     color:#aeb7c2;
     font-size:13px;
     margin-top:5px;
 }
+
 .empty{
     color:#9ba5b1;
     text-align:center;
     padding:15px;
 }
+
 .status{
     text-align:center;
     padding:10px;
@@ -105,20 +122,25 @@ button:active{
     color:#b8c1cb;
     margin-top:12px;
 }
+
 .info{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:8px;
 }
+
 .info div{
     background:#20252d;
     padding:10px;
     border-radius:9px;
 }
+
 @media(max-width:600px){
+
     .search{
         flex-direction:column;
     }
+
     .info{
         grid-template-columns:1fr;
     }
@@ -136,16 +158,36 @@ button:active{
 </header>
 
 <div class="card">
+
     <div class="search">
-        <input id="searchInput" placeholder="اكتب اسم السيارة...">
-        <button onclick="searchCar()">🔍 بحث</button>
+
+        <input
+            id="searchInput"
+            placeholder="اكتب اسم السيارة..."
+        >
+
+        <button onclick="searchCar()">
+            🔍 بحث
+        </button>
+
     </div>
 
     <div class="quick">
-        <button onclick="quickSearch('Toyota Camry 2018')">Camry 2018</button>
-        <button onclick="quickSearch('Chevrolet Aveo 2010')">Aveo 2010</button>
-        <button onclick="quickSearch('Hyundai Elantra 2017')">Elantra 2017</button>
+
+        <button onclick="quickSearch('Toyota Camry 2018')">
+            Camry 2018
+        </button>
+
+        <button onclick="quickSearch('Chevrolet Aveo 2010')">
+            Aveo 2010
+        </button>
+
+        <button onclick="quickSearch('Hyundai Elantra 2017')">
+            Elantra 2017
+        </button>
+
     </div>
+
 </div>
 
 <div id="result"></div>
@@ -176,38 +218,77 @@ let inventory = {
     oil_filters_raw: []
 };
 
+let cars = [];
+
+
+/* =========================
+   حماية النصوص
+========================= */
+
+function escapeHtml(text){
+
+    return String(text ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+
+/* =========================
+   تحميل المخزون
+========================= */
+
 async function loadInventory(){
 
-    const status = document.getElementById("status");
+    const status =
+        document.getElementById("status");
 
     try{
 
-        const response = await fetch("./inventory.json", {
-            cache:"no-store"
-        });
+        const response =
+            await fetch("./inventory.json", {
+                cache:"no-store"
+            });
 
         if(!response.ok){
-            throw new Error("HTTP " + response.status);
+            throw new Error(
+                "HTTP " + response.status
+            );
         }
 
-        inventory = await response.json();
+        inventory =
+            await response.json();
 
-        console.log("Inventory loaded:", inventory);
+        console.log(
+            "Inventory loaded:",
+            inventory
+        );
 
         renderInventory();
 
-        status.textContent = "✅ قاعدة البيانات محملة بنجاح";
+        status.textContent =
+            "✅ قاعدة البيانات محملة بنجاح";
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Inventory error:",
+            error
+        );
 
         status.textContent =
-        "❌ تعذر تحميل inventory.json — تأكد أن الملف موجود بنفس مجلد index.html";
+            "⚠️ تم تحميل البرنامج، لكن inventory.json غير متوفر";
 
         renderInventory();
     }
 }
+
+
+/* =========================
+   عرض المخزون
+========================= */
 
 function renderInventory(){
 
@@ -217,9 +298,15 @@ function renderInventory(){
     renderStock();
 }
 
+
+/* =========================
+   زيوت المحرك
+========================= */
+
 function renderOils(){
 
-    const box = document.getElementById("oils");
+    const box =
+        document.getElementById("oils");
 
     box.innerHTML = "";
 
@@ -228,13 +315,18 @@ function renderOils(){
         inventory.engine_oils.length === 0
     ){
 
-        box.innerHTML =
-        '<div class="card"><div class="empty">لا توجد زيوت محرك في قاعدة البيانات</div></div>';
+        box.innerHTML = `
+            <div class="card">
+                <div class="empty">
+                    لا توجد زيوت محرك في قاعدة البيانات
+                </div>
+            </div>
+        `;
 
         return;
     }
 
-    inventory.engine_oils.forEach((oil)=>{
+    inventory.engine_oils.forEach(oil => {
 
         let name = "";
         let brand = "";
@@ -246,35 +338,63 @@ function renderOils(){
 
         }else{
 
-            brand = oil.brand || "";
-            name = oil.name || oil.product || "";
-            viscosity = oil.viscosity || "";
+            brand =
+                oil.brand || "";
 
+            name =
+                oil.name ||
+                oil.product ||
+                "";
+
+            viscosity =
+                oil.viscosity ||
+                "";
         }
 
         box.innerHTML += `
+
             <div class="item">
-                <strong>🛢️ ${escapeHtml(name)}</strong>
+
+                <strong>
+                    🛢️ ${escapeHtml(name)}
+                </strong>
 
                 ${
                     brand
-                    ? `<div class="small">الشركة: ${escapeHtml(brand)}</div>`
+                    ? `
+                        <div class="small">
+                            الشركة:
+                            ${escapeHtml(brand)}
+                        </div>
+                    `
                     : ""
                 }
 
                 ${
                     viscosity
-                    ? `<div class="small">اللزوجة: ${escapeHtml(viscosity)}</div>`
+                    ? `
+                        <div class="small">
+                            اللزوجة:
+                            ${escapeHtml(viscosity)}
+                        </div>
+                    `
                     : ""
                 }
+
             </div>
         `;
     });
 }
 
+
+/* =========================
+   زيوت القير
+========================= */
+
 function renderTransmissions(){
 
-    const box = document.getElementById("transmissions");
+    const box =
+        document.getElementById("transmissions");
 
     box.innerHTML = "";
 
@@ -283,13 +403,18 @@ function renderTransmissions(){
         inventory.transmission_fluids.length === 0
     ){
 
-        box.innerHTML =
-        '<div class="card"><div class="empty">لا توجد زيوت قير في قاعدة البيانات</div></div>';
+        box.innerHTML = `
+            <div class="card">
+                <div class="empty">
+                    لا توجد زيوت قير في قاعدة البيانات
+                </div>
+            </div>
+        `;
 
         return;
     }
 
-    inventory.transmission_fluids.forEach((fluid)=>{
+    inventory.transmission_fluids.forEach(fluid => {
 
         let name = "";
         let brand = "";
@@ -300,32 +425,49 @@ function renderTransmissions(){
 
         }else{
 
-            brand = fluid.brand || "";
+            brand =
+                fluid.brand || "";
+
             name =
                 fluid.name ||
                 fluid.product ||
                 fluid.type ||
                 "";
-
         }
 
         box.innerHTML += `
+
             <div class="item">
-                <strong>⚙️ ${escapeHtml(name)}</strong>
+
+                <strong>
+                    ⚙️ ${escapeHtml(name)}
+                </strong>
 
                 ${
                     brand
-                    ? `<div class="small">الشركة: ${escapeHtml(brand)}</div>`
+                    ? `
+                        <div class="small">
+                            الشركة:
+                            ${escapeHtml(brand)}
+                        </div>
+                    `
                     : ""
                 }
+
             </div>
         `;
     });
 }
 
+
+/* =========================
+   فلاتر الزيت
+========================= */
+
 function renderFilters(){
 
-    const box = document.getElementById("filters");
+    const box =
+        document.getElementById("filters");
 
     box.innerHTML = "";
 
@@ -334,13 +476,18 @@ function renderFilters(){
         inventory.oil_filters_raw.length === 0
     ){
 
-        box.innerHTML =
-        '<div class="card"><div class="empty">لا توجد فلاتر في قاعدة البيانات</div></div>';
+        box.innerHTML = `
+            <div class="card">
+                <div class="empty">
+                    لا توجد فلاتر في قاعدة البيانات
+                </div>
+            </div>
+        `;
 
         return;
     }
 
-    inventory.oil_filters_raw.forEach((filter)=>{
+    inventory.oil_filters_raw.forEach(filter => {
 
         let name = "";
 
@@ -356,30 +503,41 @@ function renderFilters(){
                 filter.brand ||
                 filter.product ||
                 "";
-
         }
 
         box.innerHTML += `
+
             <div class="item">
-                <strong>🔧 ${escapeHtml(name)}</strong>
+
+                <strong>
+                    🔧 ${escapeHtml(name)}
+                </strong>
+
             </div>
         `;
     });
 }
 
+
+/* =========================
+   المخزون المحلي
+========================= */
+
 function renderStock(){
 
-    const box = document.getElementById("stock");
+    const box =
+        document.getElementById("stock");
 
     let stock = [];
 
     try{
 
-        stock = JSON.parse(
-            localStorage.getItem("oilStock") || "[]"
-        );
+        stock =
+            JSON.parse(
+                localStorage.getItem("oilStock") || "[]"
+            );
 
-    }catch(e){
+    }catch(error){
 
         stock = [];
     }
@@ -399,22 +557,32 @@ function renderStock(){
 
     box.innerHTML = "";
 
-    stock.forEach((item)=>{
+    stock.forEach(item => {
 
-        let name =
+        const name =
             typeof item === "string"
             ? item
-            : item.name || item.product || "زيت";
+            : item.name ||
+              item.product ||
+              "زيت";
 
         box.innerHTML += `
+
             <div class="item">
-                <strong>📦 ${escapeHtml(name)}</strong>
+
+                <strong>
+                    📦 ${escapeHtml(name)}
+                </strong>
+
             </div>
         `;
     });
 }
 
-let cars = [];
+
+/* =========================
+   البحث عن السيارة
+========================= */
 
 function searchCar(){
 
@@ -445,7 +613,11 @@ function searchCar(){
         cars.filter(car => {
 
             const name =
-                `${car.make} ${car.model} ${car.years}`
+                `
+                ${car.make || ""}
+                ${car.model || ""}
+                ${car.years || ""}
+                `
                 .toLowerCase();
 
             return name.includes(input);
@@ -470,13 +642,23 @@ function searchCar(){
 }
 
 
+/* =========================
+   البحث السريع
+========================= */
+
 function quickSearch(name){
 
-    document.getElementById("searchInput").value = name;
+    document
+        .getElementById("searchInput")
+        .value = name;
 
     searchCar();
 }
 
+
+/* =========================
+   عرض السيارة
+========================= */
 
 function showResult(car){
 
@@ -484,59 +666,73 @@ function showResult(car){
         document.getElementById("result");
 
     const carName =
-        `${car.make} ${car.model}`;
+        `${car.make || ""} ${car.model || ""}`.trim();
 
     result.innerHTML += `
 
         <div class="card">
 
-            <h2>🚗 ${escapeHtml(carName)}</h2>
+            <h2>
+                🚗 ${escapeHtml(carName)}
+            </h2>
 
             <div class="info">
 
                 <div>
                     <strong>السنوات</strong><br>
-                    ${escapeHtml(car.years)}
+                    ${escapeHtml(car.years || "-")}
                 </div>
 
                 <div>
                     <strong>المحرك</strong><br>
-                    ${escapeHtml(car.engine)}
+                    ${escapeHtml(car.engine || "-")}
                 </div>
 
                 <div>
                     <strong>عدد السلندرات</strong><br>
-                    ${escapeHtml(car.cylinders)}
+                    ${escapeHtml(car.cylinders || "-")}
                 </div>
 
                 <div>
                     <strong>زيت المحرك</strong><br>
-                    ${escapeHtml(car.engineOil?.viscosity || "-")}
+                    ${escapeHtml(
+                        car.engineOil?.viscosity || "-"
+                    )}
                 </div>
 
                 <div>
                     <strong>كمية زيت المحرك</strong><br>
-                    ${escapeHtml(car.engineOil?.capacity || "-")}
+                    ${escapeHtml(
+                        car.engineOil?.capacity || "-"
+                    )}
                 </div>
 
                 <div>
                     <strong>القير</strong><br>
-                    ${escapeHtml(car.transmission?.type || "-")}
+                    ${escapeHtml(
+                        car.transmission?.type || "-"
+                    )}
                 </div>
 
                 <div>
                     <strong>زيت القير</strong><br>
-                    ${escapeHtml(car.transmission?.fluid || "-")}
+                    ${escapeHtml(
+                        car.transmission?.fluid || "-"
+                    )}
                 </div>
 
                 <div>
                     <strong>كمية زيت القير</strong><br>
-                    ${escapeHtml(car.transmission?.capacity || "-")}
+                    ${escapeHtml(
+                        car.transmission?.capacity || "-"
+                    )}
                 </div>
 
                 <div>
                     <strong>فلتر الزيت</strong><br>
-                    ${escapeHtml(car.oilFilter || "غير محدد")}
+                    ${escapeHtml(
+                        car.oilFilter || "غير محدد"
+                    )}
                 </div>
 
             </div>
@@ -546,138 +742,67 @@ function showResult(car){
             </div>
 
         </div>
-
-    `;
-}
-    result.innerHTML = "";
-
-    matches.forEach(showResult);
-}
-
-function quickSearch(name){
-
-    document.getElementById("searchInput").value = name;
-
-    searchCar();
-}
-
-function showResult(car){
-
-    const result =
-        document.getElementById("result");
-
-    result.innerHTML += `
-
-        <div class="card">
-
-            <h2>🚗 ${escapeHtml(car.name)}</h2>
-
-            <div class="info">
-
-                <div>
-                    <strong>المحرك</strong><br>
-                    ${escapeHtml(car.engine)}
-                </div>
-
-                <div>
-                    <strong>عدد السلندرات</strong><br>
-                    ${escapeHtml(car.cylinders)}
-                </div>
-
-                <div>
-                    <strong>القير</strong><br>
-                    ${escapeHtml(car.transmission)}
-                </div>
-
-                <div>
-                    <strong>زيت المحرك</strong><br>
-                    ${escapeHtml(car.oil)}
-                </div>
-
-                <div>
-                    <strong>كمية الزيت</strong><br>
-                    ${escapeHtml(car.oilQty)}
-                </div>
-
-                <div>
-                    <strong>زيت القير</strong><br>
-                    ${escapeHtml(car.gearOil)}
-                </div>
-
-                <div>
-                    <strong>فلتر الزيت</strong><br>
-                    ${escapeHtml(car.filter)}
-                </div>
-
-            </div>
-
-            <div class="status">
-                ⚠️ المواصفات والسعات والتوافق تحتاج تحقق من المصدر قبل اعتمادها.
-            </div>
-
-        </div>
-
     `;
 }
 
-function escapeHtml(text){
 
-    return String(text)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-}
-    
+/* =========================
+   تحميل السيارات
+========================= */
+
 async function loadCars(){
 
     try{
 
-        const response = await fetch("./cars.json", {
-            cache: "no-store"
-        });
+        const response =
+            await fetch("./cars.json", {
+                cache:"no-store"
+            });
 
         if(!response.ok){
-            throw new Error("تعذر تحميل cars.json");
+
+            throw new Error(
+                "HTTP " + response.status
+            );
         }
 
-        const data = await response.json();
-        
-        cars = data.cars || [];
-  
-        console.log("تم تحميل قاعدة السيارات:", data.cars);
+        const data =
+            await response.json();
+
+        cars =
+            Array.isArray(data)
+            ? data
+            : (data.cars || []);
+
+        console.log(
+            "تم تحميل قاعدة السيارات:",
+            cars
+        );
 
     }catch(error){
 
-        console.error("خطأ في تحميل السيارات:", error);
+        console.error(
+            "خطأ في تحميل السيارات:",
+            error
+        );
 
+        cars = [];
+
+        document.getElementById("status")
+            .textContent =
+            "❌ تعذر تحميل cars.json";
     }
-
 }
+
+
+/* =========================
+   تشغيل البرنامج
+========================= */
 
 loadInventory();
 loadCars();
-    
+
 </script>
-<script>
-async function loadCarsData() {
-    try {
-        const response = await fetch("cars.json");
-        if (!response.ok) throw new Error("cars.json not found");
 
-        const cars = await response.json();
-
-        console.log("Auto Oil Pro: Cars loaded", cars);
-
-        window.carsDatabase = cars;
-
-    } catch (error) {
-        console.error("Auto Oil Pro:", error);
-    }
-}
-
-loadCarsData();
-</script>
 </body>
 </html>
