@@ -574,6 +574,24 @@ loadInventory();
 loadCars();
     
 </script>
+<script>
+async function loadCarsData() {
+    try {
+        const response = await fetch("cars.json");
+        if (!response.ok) throw new Error("cars.json not found");
 
+        const cars = await response.json();
+
+        console.log("Auto Oil Pro: Cars loaded", cars);
+
+        window.carsDatabase = cars;
+
+    } catch (error) {
+        console.error("Auto Oil Pro:", error);
+    }
+}
+
+loadCarsData();
+</script>
 </body>
 </html>
