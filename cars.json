@@ -3,58 +3,75 @@
     {
       "make": "Chevrolet",
       "model": "Aveo",
-      "years": "2007-2011",
+      "year": 2010,
       "engine": "1.6L",
       "cylinders": 4,
       "engineOil": {
         "viscosity": "5W-30",
-        "capacity": "4.0 L"
+        "capacity": "4.5 L"
       },
       "oilFilter": "",
       "transmission": {
         "type": "Automatic",
         "fluid": "Dexron VI",
-        "capacity": "4.5 L"
+        "capacity": "5.87 L"
       }
     },
     {
       "make": "Toyota",
       "model": "Camry",
-      "years": "2012-2017",
-      "engine": "2.5L",
+      "year": 2018,
+      "engine": "2.5L A25A-FKS",
       "cylinders": 4,
       "engineOil": {
-        "viscosity": "0W-20",
-        "capacity": "4.4 L"
+        "viscosity": "0W-16",
+        "capacity": "4.5 L"
       },
       "oilFilter": "",
       "transmission": {
         "type": "Automatic",
         "fluid": "Toyota WS",
-        "capacity": "6.5 L"
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Toyota",
+      "model": "Camry",
+      "year": 2018,
+      "engine": "3.5L 2GR-FKS",
+      "cylinders": 6,
+      "engineOil": {
+        "viscosity": "",
+        "capacity": "5.4 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "Toyota WS",
+        "capacity": ""
       }
     },
     {
       "make": "Toyota",
       "model": "Corolla",
-      "years": "2014-2019",
-      "engine": "1.8L",
+      "year": 2018,
+      "engine": "1.8L 2ZR-FE / 2ZR-FAE",
       "cylinders": 4,
       "engineOil": {
-        "viscosity": "0W-20",
+        "viscosity": "",
         "capacity": "4.2 L"
       },
       "oilFilter": "",
       "transmission": {
         "type": "CVT",
-        "fluid": "Toyota CVT FE",
-        "capacity": "7.4 L"
+        "fluid": "Toyota Genuine CVTF FE",
+        "capacity": "7.5 L"
       }
     },
     {
       "make": "Hyundai",
       "model": "Elantra",
-      "years": "2017-2020",
+      "year": 2019,
       "engine": "2.0L",
       "cylinders": 4,
       "engineOil": {
@@ -65,13 +82,30 @@
       "transmission": {
         "type": "Automatic",
         "fluid": "SP-IV",
-        "capacity": "7.3 L"
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Hyundai",
+      "model": "Elantra",
+      "year": 2019,
+      "engine": "1.6L T-GDI",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": "4.5 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "7-speed DCT",
+        "fluid": "",
+        "capacity": ""
       }
     },
     {
       "make": "Kia",
       "model": "Cerato",
-      "years": "2017-2020",
+      "year": 2019,
       "engine": "2.0L",
       "cylinders": 4,
       "engineOil": {
@@ -82,7 +116,7 @@
       "transmission": {
         "type": "Automatic",
         "fluid": "SP-IV",
-        "capacity": "7.3 L"
+        "capacity": ""
       }
     }
   ]
