@@ -442,11 +442,14 @@ function searchCar(){
     }
 
     const matches =
-        cars.filter(car =>
-            car.name
-            .toLowerCase()
-            .includes(input)
-        );
+        cars.filter(car => {
+
+            const name =
+                `${car.make} ${car.model} ${car.years}`
+                .toLowerCase();
+
+            return name.includes(input);
+        });
 
     if(matches.length === 0){
 
@@ -454,8 +457,6 @@ function searchCar(){
             <div class="card">
                 <div class="empty">
                     ❌ ما لكيت سيارة بهذا الاسم حاليًا
-                    <br><br>
-                    قاعدة السيارات راح نوسعها بالخطوة الجاية.
                 </div>
             </div>
         `;
@@ -463,6 +464,91 @@ function searchCar(){
         return;
     }
 
+    result.innerHTML = "";
+
+    matches.forEach(showResult);
+}
+
+
+function quickSearch(name){
+
+    document.getElementById("searchInput").value = name;
+
+    searchCar();
+}
+
+
+function showResult(car){
+
+    const result =
+        document.getElementById("result");
+
+    const carName =
+        `${car.make} ${car.model}`;
+
+    result.innerHTML += `
+
+        <div class="card">
+
+            <h2>🚗 ${escapeHtml(carName)}</h2>
+
+            <div class="info">
+
+                <div>
+                    <strong>السنوات</strong><br>
+                    ${escapeHtml(car.years)}
+                </div>
+
+                <div>
+                    <strong>المحرك</strong><br>
+                    ${escapeHtml(car.engine)}
+                </div>
+
+                <div>
+                    <strong>عدد السلندرات</strong><br>
+                    ${escapeHtml(car.cylinders)}
+                </div>
+
+                <div>
+                    <strong>زيت المحرك</strong><br>
+                    ${escapeHtml(car.engineOil?.viscosity || "-")}
+                </div>
+
+                <div>
+                    <strong>كمية زيت المحرك</strong><br>
+                    ${escapeHtml(car.engineOil?.capacity || "-")}
+                </div>
+
+                <div>
+                    <strong>القير</strong><br>
+                    ${escapeHtml(car.transmission?.type || "-")}
+                </div>
+
+                <div>
+                    <strong>زيت القير</strong><br>
+                    ${escapeHtml(car.transmission?.fluid || "-")}
+                </div>
+
+                <div>
+                    <strong>كمية زيت القير</strong><br>
+                    ${escapeHtml(car.transmission?.capacity || "-")}
+                </div>
+
+                <div>
+                    <strong>فلتر الزيت</strong><br>
+                    ${escapeHtml(car.oilFilter || "غير محدد")}
+                </div>
+
+            </div>
+
+            <div class="status">
+                ⚠️ المواصفات والسعات والتوافق تحتاج تحقق من المصدر قبل اعتمادها.
+            </div>
+
+        </div>
+
+    `;
+}
     result.innerHTML = "";
 
     matches.forEach(showResult);
