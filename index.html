@@ -578,20 +578,17 @@ function escapeHtml(text){
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
 }
-    async function loadCars(){
+    
+async function loadCars(){
 
     try{
 
         const response = await fetch("./cars.json", {
-
             cache: "no-store"
-
         });
 
         if(!response.ok){
-
             throw new Error("تعذر تحميل cars.json");
-
         }
 
         const data = await response.json();
@@ -604,10 +601,11 @@ function escapeHtml(text){
 
     }
 
+}
+
 loadInventory();
 loadCars();
     
-
 </script>
 
 </body>
