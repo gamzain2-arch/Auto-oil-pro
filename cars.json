@@ -17,7 +17,6 @@
         "capacity": "5.87 L"
       }
     },
-
     {
       "make": "Toyota",
       "model": "Camry",
@@ -52,7 +51,6 @@
         "capacity": "7.5 L"
       }
     },
-
     {
       "make": "Toyota",
       "model": "Corolla",
@@ -70,7 +68,6 @@
         "capacity": "7.5 L"
       }
     },
-
     {
       "make": "Hyundai",
       "model": "Elantra",
@@ -105,7 +102,6 @@
         "capacity": "1.9-2.0 L"
       }
     },
-
     {
       "make": "Kia",
       "model": "Cerato",
@@ -120,7 +116,7 @@
       "transmission": {
         "type": "Automatic",
         "fluid": "SP-IV",
-        "capacity": ""
+        "capacity": "6.7 L"
       }
     },
 
@@ -141,7 +137,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Toyota",
       "model": "Yaris",
@@ -159,7 +154,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Toyota",
       "model": "RAV4",
@@ -177,7 +171,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Toyota",
       "model": "Hilux",
@@ -195,12 +188,11 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Hyundai",
       "model": "Sonata",
       "year": 2019,
-      "engine": "2.4L",
+      "engine": "2.4L GDI",
       "cylinders": 4,
       "engineOil": {
         "viscosity": "5W-20",
@@ -210,10 +202,9 @@
       "transmission": {
         "type": "Automatic",
         "fluid": "SP-IV",
-        "capacity": ""
+        "capacity": "7.1 L"
       }
     },
-
     {
       "make": "Hyundai",
       "model": "Accent",
@@ -231,12 +222,11 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Hyundai",
       "model": "Tucson",
       "year": 2019,
-      "engine": "2.0L",
+      "engine": "2.0L GDI",
       "cylinders": 4,
       "engineOil": {
         "viscosity": "5W-20",
@@ -246,15 +236,14 @@
       "transmission": {
         "type": "Automatic",
         "fluid": "SP-IV",
-        "capacity": ""
+        "capacity": "7.3 L"
       }
     },
-
     {
       "make": "Kia",
       "model": "Sportage",
       "year": 2019,
-      "engine": "2.4L",
+      "engine": "2.4L GDI",
       "cylinders": 4,
       "engineOil": {
         "viscosity": "5W-20",
@@ -264,15 +253,31 @@
       "transmission": {
         "type": "Automatic",
         "fluid": "SP-IV",
-        "capacity": ""
+        "capacity": "6.7 L"
       }
     },
-
+    {
+      "make": "Kia",
+      "model": "Sportage",
+      "year": 2019,
+      "engine": "2.0L T-GDI",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": "4.8 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "SP-IV",
+        "capacity": "7.8 L"
+      }
+    },
     {
       "make": "Kia",
       "model": "Sorento",
       "year": 2019,
-      "engine": "2.4L",
+      "engine": "2.4L GDI",
       "cylinders": 4,
       "engineOil": {
         "viscosity": "5W-20",
@@ -285,7 +290,23 @@
         "capacity": ""
       }
     },
-
+    {
+      "make": "Kia",
+      "model": "Rio",
+      "year": 2019,
+      "engine": "1.6L",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-20",
+        "capacity": "3.5 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "SP-IV",
+        "capacity": ""
+      }
+    },
     {
       "make": "Chevrolet",
       "model": "Cruze",
@@ -303,7 +324,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Chevrolet",
       "model": "Malibu",
@@ -321,7 +341,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Nissan",
       "model": "Sentra",
@@ -339,7 +358,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Nissan",
       "model": "Altima",
@@ -357,7 +375,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Honda",
       "model": "Civic",
@@ -375,7 +392,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Honda",
       "model": "Accord",
@@ -393,7 +409,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Honda",
       "model": "CR-V",
@@ -411,7 +426,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Ford",
       "model": "Fusion",
@@ -429,7 +443,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Ford",
       "model": "Escape",
@@ -447,7 +460,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Mazda",
       "model": "3",
@@ -465,7 +477,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Mazda",
       "model": "CX-5",
@@ -483,7 +494,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Mitsubishi",
       "model": "Lancer",
@@ -501,7 +511,6 @@
         "capacity": ""
       }
     },
-
     {
       "make": "Mitsubishi",
       "model": "Outlander",
@@ -516,6 +525,593 @@
       "transmission": {
         "type": "CVT",
         "fluid": "Mitsubishi CVTF-J4",
+        "capacity": ""
+      }
+    },
+
+    {
+      "make": "Toyota",
+      "model": "Camry",
+      "year": 2019,
+      "engine": "2.5L A25A-FKS",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "0W-16",
+        "capacity": "4.5 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "8-speed Automatic",
+        "fluid": "Toyota ATF WS",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Toyota",
+      "model": "Camry",
+      "year": 2020,
+      "engine": "2.5L A25A-FKS",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "0W-16",
+        "capacity": "4.5 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "8-speed Automatic",
+        "fluid": "Toyota ATF WS",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Toyota",
+      "model": "Corolla",
+      "year": 2020,
+      "engine": "1.8L",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "0W-20",
+        "capacity": "4.2 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "CVT",
+        "fluid": "Toyota Genuine CVTF FE",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Toyota",
+      "model": "Yaris",
+      "year": 2020,
+      "engine": "1.5L",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "0W-20",
+        "capacity": "3.7 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "CVT",
+        "fluid": "Toyota CVT Fluid FE",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Toyota",
+      "model": "RAV4",
+      "year": 2020,
+      "engine": "2.5L A25A-FKS",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "0W-16",
+        "capacity": "4.5 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "8-speed Automatic",
+        "fluid": "Toyota ATF WS",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Toyota",
+      "model": "Prado",
+      "year": 2019,
+      "engine": "4.0L 1GR-FE",
+      "cylinders": 6,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "6-speed Automatic",
+        "fluid": "Toyota ATF WS",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Toyota",
+      "model": "Land Cruiser",
+      "year": 2019,
+      "engine": "5.7L 3UR-FE",
+      "cylinders": 8,
+      "engineOil": {
+        "viscosity": "0W-20",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "8-speed Automatic",
+        "fluid": "Toyota ATF WS",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Toyota",
+      "model": "Hilux",
+      "year": 2020,
+      "engine": "2.7L 2TR-FE",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": "5.8 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "6-speed Automatic",
+        "fluid": "Toyota ATF WS",
+        "capacity": ""
+      }
+    },
+
+    {
+      "make": "Hyundai",
+      "model": "Sonata",
+      "year": 2019,
+      "engine": "1.6L T-GDI",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": "4.5 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "7-speed DCT",
+        "fluid": "DCTF 70W",
+        "capacity": "1.9 L"
+      }
+    },
+    {
+      "make": "Hyundai",
+      "model": "Sonata",
+      "year": 2019,
+      "engine": "2.0L T-GDI",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": "4.8 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "8-speed Automatic",
+        "fluid": "SP-IV",
+        "capacity": "7.1 L"
+      }
+    },
+    {
+      "make": "Hyundai",
+      "model": "Tucson",
+      "year": 2019,
+      "engine": "2.4L GDI",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-20",
+        "capacity": "4.8 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "SP-IV",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Hyundai",
+      "model": "Santa Fe",
+      "year": 2019,
+      "engine": "2.4L GDI",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-20",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "SP-IV",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Hyundai",
+      "model": "Santa Fe",
+      "year": 2019,
+      "engine": "2.2L CRDi",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "8-speed Automatic",
+        "fluid": "SP-IV",
+        "capacity": ""
+      }
+    },
+
+    {
+      "make": "Kia",
+      "model": "Optima",
+      "year": 2019,
+      "engine": "2.4L GDI",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-20",
+        "capacity": "4.8 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "SP-IV",
+        "capacity": "7.1 L"
+      }
+    },
+    {
+      "make": "Kia",
+      "model": "Optima",
+      "year": 2019,
+      "engine": "2.0L T-GDI",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": "4.8 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "SP-IV",
+        "capacity": "7.8 L"
+      }
+    },
+    {
+      "make": "Kia",
+      "model": "Cerato",
+      "year": 2020,
+      "engine": "2.0L",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-20",
+        "capacity": "4.0 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "SP-IV",
+        "capacity": "6.7 L"
+      }
+    },
+    {
+      "make": "Kia",
+      "model": "Sportage",
+      "year": 2020,
+      "engine": "2.4L GDI",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-20",
+        "capacity": "4.8 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "SP-IV",
+        "capacity": "6.7 L"
+      }
+    },
+    {
+      "make": "Kia",
+      "model": "Sorento",
+      "year": 2020,
+      "engine": "2.4L GDI",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-20",
+        "capacity": "4.8 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "SP-IV",
+        "capacity": ""
+      }
+    },
+
+    {
+      "make": "Nissan",
+      "model": "Sunny",
+      "year": 2019,
+      "engine": "1.5L",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Nissan",
+      "model": "X-Trail",
+      "year": 2019,
+      "engine": "2.5L",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "0W-20",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "CVT",
+        "fluid": "Nissan NS-3",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Nissan",
+      "model": "Patrol",
+      "year": 2019,
+      "engine": "4.0L V6",
+      "cylinders": 6,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "7-speed Automatic",
+        "fluid": "Nissan Matic S",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Nissan",
+      "model": "Patrol",
+      "year": 2019,
+      "engine": "5.6L V8",
+      "cylinders": 8,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "7-speed Automatic",
+        "fluid": "Nissan Matic S",
+        "capacity": ""
+      }
+    },
+
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2019,
+      "engine": "1.5L Turbo",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "0W-20",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "CVT",
+        "fluid": "Honda HCF-2",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Honda",
+      "model": "Accord",
+      "year": 2019,
+      "engine": "2.0L Turbo",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "0W-20",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "10-speed Automatic",
+        "fluid": "Honda ATF",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Honda",
+      "model": "CR-V",
+      "year": 2019,
+      "engine": "2.4L",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "0W-20",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "CVT",
+        "fluid": "Honda HCF-2",
+        "capacity": ""
+      }
+    },
+
+    {
+      "make": "Chevrolet",
+      "model": "Captiva",
+      "year": 2019,
+      "engine": "2.4L",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "Dexron VI",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Chevrolet",
+      "model": "Tahoe",
+      "year": 2019,
+      "engine": "5.3L V8",
+      "cylinders": 8,
+      "engineOil": {
+        "viscosity": "0W-20",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "6-speed Automatic",
+        "fluid": "Dexron VI",
+        "capacity": ""
+      }
+    },
+
+    {
+      "make": "Ford",
+      "model": "Explorer",
+      "year": 2019,
+      "engine": "3.5L V6",
+      "cylinders": 6,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "6-speed Automatic",
+        "fluid": "Mercon LV",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Ford",
+      "model": "Mustang",
+      "year": 2019,
+      "engine": "2.3L EcoBoost",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "10-speed Automatic",
+        "fluid": "Mercon ULV",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Ford",
+      "model": "Mustang",
+      "year": 2019,
+      "engine": "5.0L V8",
+      "cylinders": 8,
+      "engineOil": {
+        "viscosity": "5W-20",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "10-speed Automatic",
+        "fluid": "Mercon ULV",
+        "capacity": ""
+      }
+    },
+
+    {
+      "make": "Mazda",
+      "model": "6",
+      "year": 2019,
+      "engine": "2.5L Skyactiv-G",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "0W-20",
+        "capacity": "4.5 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "Mazda FZ",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Mazda",
+      "model": "CX-5",
+      "year": 2020,
+      "engine": "2.5L Skyactiv-G",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "0W-20",
+        "capacity": "4.8 L"
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "Mazda FZ",
+        "capacity": ""
+      }
+    },
+
+    {
+      "make": "Mitsubishi",
+      "model": "ASX",
+      "year": 2019,
+      "engine": "2.0L",
+      "cylinders": 4,
+      "engineOil": {
+        "viscosity": "0W-20",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "CVT",
+        "fluid": "Mitsubishi CVTF-J4",
+        "capacity": ""
+      }
+    },
+    {
+      "make": "Mitsubishi",
+      "model": "Pajero",
+      "year": 2019,
+      "engine": "3.8L V6",
+      "cylinders": 6,
+      "engineOil": {
+        "viscosity": "5W-30",
+        "capacity": ""
+      },
+      "oilFilter": "",
+      "transmission": {
+        "type": "Automatic",
+        "fluid": "Mitsubishi ATF-J3",
         "capacity": ""
       }
     }
