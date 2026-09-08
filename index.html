@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1">
+
 <title>Auto Oil Pro</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+    box-sizing:border-box;
+}
 
 body{
     margin:0;
@@ -48,7 +55,8 @@ h1{
     margin:14px 0;
 }
 
-select,input{
+select,
+input{
     width:100%;
     padding:14px;
     border-radius:10px;
@@ -57,6 +65,10 @@ select,input{
     color:#fff;
     font-size:16px;
     margin-bottom:10px;
+}
+
+select:disabled{
+    opacity:.45;
 }
 
 button{
@@ -68,6 +80,11 @@ button{
     color:white;
     font-size:15px;
     font-weight:bold;
+    cursor:pointer;
+}
+
+button:active{
+    transform:scale(.98);
 }
 
 .info{
@@ -78,8 +95,13 @@ button{
 
 .info div{
     background:#20252d;
-    padding:10px;
+    padding:12px;
     border-radius:9px;
+    line-height:1.6;
+}
+
+.info strong{
+    color:#00d4ff;
 }
 
 .status{
@@ -97,63 +119,161 @@ button{
     padding:15px;
 }
 
+.result-title{
+    color:#00d4ff;
+    margin-bottom:15px;
+}
+
+.transmission-box{
+    margin-top:15px;
+    padding:14px;
+    border-radius:12px;
+    background:#151b22;
+    border:1px solid #29333e;
+}
+
+.transmission-title{
+    color:#00d4ff;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.warning{
+    margin-top:12px;
+    padding:10px;
+    border-radius:9px;
+    background:#272018;
+    color:#ffc76b;
+    font-size:13px;
+}
+
 @media(max-width:600px){
+
     .info{
         grid-template-columns:1fr;
     }
+
+    h1{
+        font-size:26px;
+    }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
 
+
 <header>
+
     <h1>🚗 Auto Oil Pro</h1>
-    <span class="badge">V2.2</span>
+
+    <span class="badge">
+        V3.0
+    </span>
+
 </header>
+
+
 
 <div class="card">
 
+
+    <!-- الشركة -->
+
     <select id="makeSelect">
-        <option value="">🏢 اختر الشركة</option>
+
+        <option value="">
+            🏢 اختر الشركة
+        </option>
+
     </select>
+
+
+
+    <!-- الموديل -->
 
     <select id="modelSelect" disabled>
-        <option value="">🚗 اختر الموديل</option>
+
+        <option value="">
+            🚗 اختر الموديل
+        </option>
+
     </select>
+
+
+
+    <!-- السنة -->
 
     <select id="yearSelect" disabled>
-        <option value="">📅 اختر السنة</option>
+
+        <option value="">
+            📅 اختر السنة
+        </option>
+
     </select>
+
+
+
+    <!-- المحرك -->
 
     <select id="engineSelect" disabled>
-        <option value="">🔧 اختر المحرك</option>
+
+        <option value="">
+            🔧 اختر المحرك
+        </option>
+
     </select>
 
+
+
     <button onclick="searchCar()">
+
         🔍 عرض معلومات السيارة
+
     </button>
 
+
 </div>
+
+
 
 <div id="result"></div>
 
+
+
 <div id="status" class="status">
+
     ⏳ جاري تحميل قاعدة السيارات...
-</div>
 
 </div>
+
+
+
+</div>
+
+
 
 <script>
+
+
+/* =====================================================
+   قاعدة البيانات
+===================================================== */
 
 let cars = [];
 
 
-/* =========================
+
+/* =====================================================
    حماية النصوص
-========================= */
+===================================================== */
 
 function escapeHtml(text){
 
@@ -163,12 +283,14 @@ function escapeHtml(text){
         .replaceAll(">","&gt;")
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
+
 }
 
 
-/* =========================
-   العناصر
-========================= */
+
+/* =====================================================
+   عناصر الصفحة
+===================================================== */
 
 const makeSelect =
     document.getElementById("makeSelect");
@@ -189,232 +311,582 @@ const status =
     document.getElementById("status");
 
 
-/* =========================
-   تحميل السيارات
-========================= */
+
+/* =====================================================
+   تحميل cars.json
+===================================================== */
 
 async function loadCars(){
 
     try{
 
         const response =
-            await fetch("./cars.json?version=" + Date.now(), {
-                cache:"no-store"
-            });
+            await fetch(
+                "./cars.json?version=" + Date.now(),
+                {
+                    cache:"no-store"
+                }
+            );
+
 
         if(!response.ok){
-            throw new Error("HTTP " + response.status);
+
+            throw new Error(
+                "HTTP " + response.status
+            );
+
         }
+
 
         const data =
             await response.json();
+
+
+        /*
+           يدعم الشكلين:
+
+           [
+             {...}
+           ]
+
+           أو:
+
+           {
+             "cars":[
+               {...}
+             ]
+           }
+        */
 
         cars =
             Array.isArray(data)
             ? data
             : data.cars || [];
 
-        console.log("Cars loaded:", cars);
+
+        console.log(
+            "Cars loaded:",
+            cars.length
+        );
+
 
         if(cars.length === 0){
-            throw new Error("قاعدة السيارات فارغة");
+
+            throw new Error(
+                "قاعدة السيارات فارغة"
+            );
+
         }
+
 
         fillMakes();
 
+
         status.textContent =
-            "✅ تم تحميل قاعدة السيارات بنجاح";
+            "✅ تم تحميل قاعدة السيارات بنجاح — " +
+            cars.length +
+            " سيارة";
+
 
     }catch(error){
 
-        console.error("Cars error:",error);
+        console.error(
+            "Cars error:",
+            error
+        );
+
 
         status.textContent =
             "❌ تعذر تحميل cars.json";
 
     }
+
 }
 
 
-/* =========================
+
+/* =====================================================
    الشركات
-========================= */
+===================================================== */
 
 function fillMakes(){
 
-    makeSelect.innerHTML =
-        '<option value="">🏢 اختر الشركة</option>';
+    makeSelect.innerHTML = `
+        <option value="">
+            🏢 اختر الشركة
+        </option>
+    `;
+
 
     const makes =
-        [...new Set(
-            cars.map(car => car.make).filter(Boolean)
-        )];
+        [
+            ...new Set(
+                cars
+                    .map(car => car.make)
+                    .filter(Boolean)
+            )
+        ];
+
 
     makes.sort();
+
 
     makes.forEach(make => {
 
         makeSelect.innerHTML += `
+
             <option value="${escapeHtml(make)}">
+
                 ${escapeHtml(make)}
+
             </option>
+
         `;
 
     });
+
 }
 
 
-/* =========================
-   الموديلات
-========================= */
 
-makeSelect.addEventListener("change",function(){
+/* =====================================================
+   اختيار الشركة
+===================================================== */
 
-    const make = this.value;
+makeSelect.addEventListener(
+    "change",
+    function(){
 
-    modelSelect.innerHTML =
-        '<option value="">🚗 اختر الموديل</option>';
-
-    yearSelect.innerHTML =
-        '<option value="">📅 اختر السنة</option>';
-
-    engineSelect.innerHTML =
-        '<option value="">🔧 اختر المحرك</option>';
-
-    modelSelect.disabled = true;
-    yearSelect.disabled = true;
-    engineSelect.disabled = true;
-
-    if(!make) return;
-
-    const models =
-        [...new Set(
-            cars
-            .filter(car => car.make === make)
-            .map(car => car.model)
-            .filter(Boolean)
-        )];
-
-    models.sort();
-
-    models.forEach(model => {
-
-        modelSelect.innerHTML += `
-            <option value="${escapeHtml(model)}">
-                ${escapeHtml(model)}
-            </option>
-        `;
-
-    });
-
-    modelSelect.disabled = false;
-
-});
+        const make =
+            this.value;
 
 
-/* =========================
-   السنوات
-========================= */
+        resetSelect(
+            modelSelect,
+            "🚗 اختر الموديل"
+        );
 
-modelSelect.addEventListener("change",function(){
+        resetSelect(
+            yearSelect,
+            "📅 اختر السنة"
+        );
 
-    const make =
-        makeSelect.value;
-
-    const model =
-        this.value;
-
-    yearSelect.innerHTML =
-        '<option value="">📅 اختر السنة</option>';
-
-    engineSelect.innerHTML =
-        '<option value="">🔧 اختر المحرك</option>';
-
-    yearSelect.disabled = true;
-    engineSelect.disabled = true;
-
-    if(!model) return;
-
-    const years =
-        [...new Set(
-            cars
-            .filter(car =>
-                car.make === make &&
-                car.model === model
-            )
-            .map(car => car.year)
-            .filter(Boolean)
-        )];
-
-    years.sort((a,b) => a-b);
-
-    years.forEach(year => {
-
-        yearSelect.innerHTML += `
-            <option value="${year}">
-                ${year}
-            </option>
-        `;
-
-    });
-
-    yearSelect.disabled = false;
-
-});
+        resetSelect(
+            engineSelect,
+            "🔧 اختر المحرك"
+        );
 
 
-/* =========================
-   المحركات
-========================= */
-
-yearSelect.addEventListener("change",function(){
-
-    const make =
-        makeSelect.value;
-
-    const model =
-        modelSelect.value;
-
-    const year =
-        Number(this.value);
-
-    engineSelect.innerHTML =
-        '<option value="">🔧 اختر المحرك</option>';
-
-    engineSelect.disabled = true;
-
-    if(!year) return;
-
-    const engines =
-        [...new Set(
-            cars
-            .filter(car =>
-                car.make === make &&
-                car.model === model &&
-                Number(car.year) === year
-            )
-            .map(car => car.engine)
-            .filter(Boolean)
-        )];
-
-    engines.forEach(engine => {
-
-        engineSelect.innerHTML += `
-            <option value="${escapeHtml(engine)}">
-                ${escapeHtml(engine)}
-            </option>
-        `;
-
-    });
-
-    engineSelect.disabled = false;
-
-});
+        result.innerHTML = "";
 
 
-/* =========================
-   عرض السيارة
-========================= */
+        if(!make){
+
+            return;
+
+        }
+
+
+        const models =
+            [
+                ...new Set(
+
+                    cars
+
+                        .filter(
+                            car =>
+                                car.make === make
+                        )
+
+                        .map(
+                            car =>
+                                car.model
+                        )
+
+                        .filter(Boolean)
+
+                )
+            ];
+
+
+        models.sort();
+
+
+        models.forEach(model => {
+
+            modelSelect.innerHTML += `
+
+                <option value="${escapeHtml(model)}">
+
+                    ${escapeHtml(model)}
+
+                </option>
+
+            `;
+
+        });
+
+
+        modelSelect.disabled = false;
+
+    }
+);
+
+
+
+/* =====================================================
+   اختيار الموديل
+===================================================== */
+
+modelSelect.addEventListener(
+    "change",
+    function(){
+
+        const make =
+            makeSelect.value;
+
+        const model =
+            this.value;
+
+
+        resetSelect(
+            yearSelect,
+            "📅 اختر السنة"
+        );
+
+        resetSelect(
+            engineSelect,
+            "🔧 اختر المحرك"
+        );
+
+
+        result.innerHTML = "";
+
+
+        if(!model){
+
+            return;
+
+        }
+
+
+        const years =
+            [
+                ...new Set(
+
+                    cars
+
+                        .filter(
+                            car =>
+                                car.make === make &&
+                                car.model === model
+                        )
+
+                        .map(
+                            car =>
+                                car.year
+                        )
+
+                        .filter(Boolean)
+
+                )
+            ];
+
+
+        years.sort(
+            (a,b) =>
+                Number(a) - Number(b)
+        );
+
+
+        years.forEach(year => {
+
+            yearSelect.innerHTML += `
+
+                <option value="${year}">
+
+                    ${year}
+
+                </option>
+
+            `;
+
+        });
+
+
+        yearSelect.disabled = false;
+
+    }
+);
+
+
+
+/* =====================================================
+   اختيار السنة
+===================================================== */
+
+yearSelect.addEventListener(
+    "change",
+    function(){
+
+        const make =
+            makeSelect.value;
+
+        const model =
+            modelSelect.value;
+
+        const year =
+            Number(this.value);
+
+
+        resetSelect(
+            engineSelect,
+            "🔧 اختر المحرك"
+        );
+
+
+        result.innerHTML = "";
+
+
+        if(!year){
+
+            return;
+
+        }
+
+
+        const engines =
+            [
+                ...new Set(
+
+                    cars
+
+                        .filter(
+                            car =>
+
+                                car.make === make &&
+                                car.model === model &&
+                                Number(car.year) === year
+
+                        )
+
+                        .map(
+                            car =>
+                                car.engine
+                        )
+
+                        .filter(Boolean)
+
+                )
+            ];
+
+
+        engines.sort();
+
+
+        engines.forEach(engine => {
+
+            engineSelect.innerHTML += `
+
+                <option value="${escapeHtml(engine)}">
+
+                    ${escapeHtml(engine)}
+
+                </option>
+
+            `;
+
+        });
+
+
+        engineSelect.disabled = false;
+
+    }
+);
+
+
+
+/* =====================================================
+   إعادة ضبط select
+===================================================== */
+
+function resetSelect(
+    select,
+    text
+){
+
+    select.innerHTML = `
+
+        <option value="">
+
+            ${text}
+
+        </option>
+
+    `;
+
+    select.disabled = true;
+
+}
+
+
+
+/* =====================================================
+   تحديد نوع القير
+===================================================== */
+
+function getTransmissionInfo(
+    transmission
+){
+
+    if(!transmission){
+
+        return {
+
+            type:"غير محدد",
+
+            details:"غير محدد"
+
+        };
+
+    }
+
+
+    const raw =
+        String(
+            transmission.type || ""
+        );
+
+
+    const lower =
+        raw.toLowerCase();
+
+
+    let type =
+        raw || "غير محدد";
+
+
+    let details =
+        "";
+
+
+    /*
+       أوتوماتيك
+    */
+
+    if(
+        lower.includes("automatic")
+    ){
+
+        type =
+            "أوتوماتيك";
+
+
+        details =
+            raw
+                .replace(
+                    /automatic/gi,
+                    ""
+                )
+                .trim();
+
+    }
+
+
+    /*
+       CVT
+    */
+
+    else if(
+        lower.includes("cvt")
+    ){
+
+        type =
+            "CVT";
+
+
+        details =
+            raw
+                .replace(
+                    /cvt/gi,
+                    ""
+                )
+                .trim();
+
+    }
+
+
+    /*
+       DCT
+    */
+
+    else if(
+        lower.includes("dct")
+    ){
+
+        type =
+            "DCT";
+
+
+        details =
+            raw
+                .replace(
+                    /dct/gi,
+                    ""
+                )
+                .trim();
+
+    }
+
+
+    /*
+       Manual
+    */
+
+    else if(
+        lower.includes("manual")
+    ){
+
+        type =
+            "مانيوال";
+
+
+        details =
+            raw
+                .replace(
+                    /manual/gi,
+                    ""
+                )
+                .trim();
+
+    }
+
+
+    if(!details){
+
+        details =
+            type === "أوتوماتيك"
+            ? "أوتوماتيك"
+            : type;
+
+    }
+
+
+    return {
+
+        type:type,
+
+        details:details
+
+    };
+
+}
+
+
+
+/* =====================================================
+   البحث
+===================================================== */
 
 function searchCar(){
 
@@ -425,138 +897,368 @@ function searchCar(){
         modelSelect.value;
 
     const year =
-        Number(yearSelect.value);
+        Number(
+            yearSelect.value
+        );
 
     const engine =
         engineSelect.value;
 
-    if(!make || !model || !year){
+
+    if(
+        !make ||
+        !model ||
+        !year
+    ){
 
         result.innerHTML = `
+
             <div class="card">
+
                 <div class="empty">
-                    ⚠️ اختار الشركة والموديل والسنة أولاً
+
+                    ⚠️ اختار الشركة
+                    والموديل
+                    والسنة أولاً
+
                 </div>
+
             </div>
+
         `;
 
         return;
+
     }
 
+
     const matches =
-        cars.filter(car =>
-            car.make === make &&
-            car.model === model &&
-            Number(car.year) === year &&
-            (!engine || car.engine === engine)
+        cars.filter(
+            car =>
+
+                car.make === make &&
+
+                car.model === model &&
+
+                Number(car.year) === year &&
+
+                (
+                    !engine ||
+                    car.engine === engine
+                )
+
         );
+
 
     if(matches.length === 0){
 
         result.innerHTML = `
+
             <div class="card">
+
                 <div class="empty">
-                    ❌ ما لكيت بيانات لهذه السيارة
+
+                    ❌ ما لكيت بيانات
+                    لهذه السيارة
+
                 </div>
+
             </div>
+
         `;
 
         return;
+
     }
 
-    result.innerHTML = "";
 
-    matches.forEach(showResult);
+    result.innerHTML = `
+
+        <div class="card">
+
+            <h2 class="result-title">
+
+                🔎 معلومات السيارة
+
+            </h2>
+
+        </div>
+
+    `;
+
+
+    matches.forEach(
+        showResult
+    );
+
 }
 
 
-/* =========================
-   تفاصيل السيارة
-========================= */
+
+/* =====================================================
+   عرض معلومات السيارة
+===================================================== */
 
 function showResult(car){
+
+    const oil =
+        car.engineOil || {};
+
+
+    const transmission =
+        car.transmission || {};
+
+
+    const transmissionInfo =
+        getTransmissionInfo(
+            transmission
+        );
+
 
     result.innerHTML += `
 
         <div class="card">
 
+
             <h2>
-                🚗 ${escapeHtml(car.make)}
-                ${escapeHtml(car.model)}
+
+                🚗
+
+                ${escapeHtml(
+                    car.make
+                )}
+
+                ${escapeHtml(
+                    car.model
+                )}
+
             </h2>
+
+
 
             <div class="info">
 
-                <div>
-                    <strong>📅 السنة</strong><br>
-                    ${escapeHtml(car.year)}
-                </div>
 
                 <div>
-                    <strong>🔧 المحرك</strong><br>
-                    ${escapeHtml(car.engine || "-")}
-                </div>
 
-                <div>
-                    <strong>🔩 السلندرات</strong><br>
-                    ${escapeHtml(car.cylinders || "-")}
-                </div>
+                    <strong>
+                        📅 السنة
+                    </strong>
 
-                <div>
-                    <strong>🛢️ لزوجة الزيت</strong><br>
+                    <br>
+
                     ${escapeHtml(
-                        car.engineOil?.viscosity || "-"
+                        car.year || "-"
                     )}
+
                 </div>
 
-                <div>
-                    <strong>🛢️ كمية الزيت</strong><br>
-                    ${escapeHtml(
-                        car.engineOil?.capacity || "-"
-                    )}
-                </div>
+
 
                 <div>
-                    <strong>⚙️ القير</strong><br>
+
+                    <strong>
+                        🔧 المحرك
+                    </strong>
+
+                    <br>
+
                     ${escapeHtml(
-                        car.transmission?.type || "-"
+                        car.engine || "-"
                     )}
+
                 </div>
 
-                <div>
-                    <strong>⚙️ زيت القير</strong><br>
-                    ${escapeHtml(
-                        car.transmission?.fluid || "-"
-                    )}
-                </div>
+
 
                 <div>
-                    <strong>📦 كمية زيت القير</strong><br>
+
+                    <strong>
+                        🔩 عدد السلندرات
+                    </strong>
+
+                    <br>
+
                     ${escapeHtml(
-                        car.transmission?.capacity || "-"
+                        car.cylinders || "-"
                     )}
+
                 </div>
 
+
+
                 <div>
-                    <strong>🔧 فلتر الزيت</strong><br>
+
+                    <strong>
+                        🛢️ لزوجة زيت المحرك
+                    </strong>
+
+                    <br>
+
                     ${escapeHtml(
-                        car.oilFilter || "غير محدد"
+                        oil.viscosity || "-"
                     )}
+
                 </div>
+
+
+
+                <div>
+
+                    <strong>
+                        📏 كمية زيت المحرك
+                    </strong>
+
+                    <br>
+
+                    ${escapeHtml(
+                        oil.capacity || "-"
+                    )}
+
+                </div>
+
+
 
             </div>
+
+
+
+            <!-- معلومات القير -->
+
+            <div class="transmission-box">
+
+
+                <div class="transmission-title">
+
+                    ⚙️ معلومات ناقل الحركة
+
+                </div>
+
+
+
+                <div class="info">
+
+
+                    <div>
+
+                        <strong>
+                            نوع القير
+                        </strong>
+
+                        <br>
+
+                        ${escapeHtml(
+                            transmissionInfo.type
+                        )}
+
+                    </div>
+
+
+
+                    <div>
+
+                        <strong>
+                            تفاصيل القير
+                        </strong>
+
+                        <br>
+
+                        ${escapeHtml(
+                            transmissionInfo.details
+                        )}
+
+                    </div>
+
+
+
+                    <div>
+
+                        <strong>
+                            🛢️ نوع زيت القير
+                        </strong>
+
+                        <br>
+
+                        ${escapeHtml(
+                            transmission.fluid || "-"
+                        )}
+
+                    </div>
+
+
+
+                    <div>
+
+                        <strong>
+                            📦 كمية زيت القير
+                        </strong>
+
+                        <br>
+
+                        ${escapeHtml(
+                            transmission.capacity || "-"
+                        )}
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- الفلتر -->
+
+            <div class="info"
+                 style="margin-top:10px;">
+
+
+                <div>
+
+                    <strong>
+                        🔧 فلتر الزيت
+                    </strong>
+
+                    <br>
+
+                    ${escapeHtml(
+                        car.oilFilter ||
+                        "غير محدد"
+                    )}
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="warning">
+
+                ⚠️ معلومات الفلاتر
+                والسعات غير المتوفرة
+                تبقى غير محددة إلى أن
+                نتحقق منها من الكتالوج.
+
+            </div>
+
 
         </div>
 
     `;
+
 }
 
 
-/* =========================
-   تشغيل
-========================= */
+
+/* =====================================================
+   تشغيل البرنامج
+===================================================== */
 
 loadCars();
+
 
 </script>
 
