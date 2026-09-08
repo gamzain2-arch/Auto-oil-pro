@@ -1,4 +1,4 @@
-const CACHE = 'auto-oil-pro-v3';
+const CACHE = 'auto-oil-pro-v4';
 
 self.addEventListener('install', event => {
   self.skipWaiting();
@@ -8,8 +8,9 @@ self.addEventListener('install', event => {
       return cache.addAll([
         './',
         './index.html',
-        './manifest.json',
+        './cars.json',
         './inventory.json',
+        './manifest.json',
         './icon.svg'
       ]);
     })
